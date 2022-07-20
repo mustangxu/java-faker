@@ -1,8 +1,18 @@
 package com.github.javafaker.service;
 
-import com.github.javafaker.AbstractFakerTest;
-import com.github.javafaker.Faker;
-import com.github.javafaker.Superhero;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
+
 import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,18 +20,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.*;
+import com.github.javafaker.AbstractFakerTest;
+import com.github.javafaker.Faker;
+import com.github.javafaker.Superhero;
 
 public class FakeValuesServiceTest extends AbstractFakerTest {
 
@@ -33,83 +34,84 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     private FakeValuesService fakeValuesService;
 
+    @Override
     @Before
     public void before() {
         super.before();
         MockitoAnnotations.initMocks(this);
 
         // always return the first element
-        when(randomService.nextInt(anyInt())).thenReturn(0);
+        when(this.randomService.nextInt(anyInt())).thenReturn(0);
 
-        fakeValuesService = spy(new FakeValuesService(new Locale("test"), randomService));
+        this.fakeValuesService = spy(new FakeValuesService(new Locale("test"), this.randomService));
     }
 
     @Test
     public void fetchStringShouldReturnValue() {
-        assertThat(fakeValuesService.fetchString("property.dummy"), is("x"));
+        assertThat(this.fakeValuesService.fetchString("property.dummy"), is("x"));
     }
 
     @Test
     public void fetchShouldReturnValue() {
-        assertThat(fakeValuesService.fetch("property.dummy"), Is.<Object>is("x"));
+        assertThat(this.fakeValuesService.fetch("property.dummy"), Is.<Object>is("x"));
     }
 
     @Test
     public void fetchObjectShouldReturnValue() {
-        assertThat(fakeValuesService.fetchObject("property.dummy"), Is.<Object>is(Arrays.asList("x", "y", "z")));
+        assertThat(this.fakeValuesService.fetchObject("property.dummy"), Is.<Object>is(Arrays.asList("x", "y", "z")));
     }
 
     @Test
     public void safeFetchShouldReturnValueInList() {
-        doReturn(0).when(randomService).nextInt(Mockito.anyInt());
-        assertThat(fakeValuesService.safeFetch("property.dummy", null), is("x"));
+        doReturn(0).when(this.randomService).nextInt(Mockito.anyInt());
+        assertThat(this.fakeValuesService.safeFetch("property.dummy", null), is("x"));
     }
 
     @Test
     public void safeFetchShouldReturnSimpleList() {
-        assertThat(fakeValuesService.safeFetch("property.simple", null), is("hello"));
+        assertThat(this.fakeValuesService.safeFetch("property.simple", null), is("hello"));
     }
 
     @Test
     public void safeFetchShouldReturnEmptyStringWhenPropertyDoesntExist() {
-        assertThat(fakeValuesService.safeFetch("property.dummy2", ""), isEmptyString());
+        assertThat(this.fakeValuesService.safeFetch("property.dummy2", ""), isEmptyString());
     }
 
     @Test
     public void bothify2Args() {
-        final DummyService dummy = mock(DummyService.class);
+        final var dummy = mock(DummyService.class);
 
-        Faker f = new Faker();
+        var f = new Faker();
 
-        String value = fakeValuesService.resolve("property.bothify_2", dummy, f);
+        var value = this.fakeValuesService.resolve("property.bothify_2", dummy, f);
         assertThat(value, matchesRegularExpression("[A-Z]{2}\\d{2}"));
     }
 
     @Test
     public void regexifyDirective() {
-        final DummyService dummy = mock(DummyService.class);
+        final var dummy = mock(DummyService.class);
 
-        String value = fakeValuesService.resolve("property.regexify1", dummy, faker);
+        var value = this.fakeValuesService.resolve("property.regexify1", dummy, this.faker);
         assertThat(value, isOneOf("55", "44", "45", "54"));
-        verify(faker).regexify("[45]{2}");
+        verify(this.faker).regexify("[45]{2}");
     }
 
     @Test
     public void regexifySlashFormatDirective() {
-        final DummyService dummy = mock(DummyService.class);
+        final var dummy = mock(DummyService.class);
 
-        String value = fakeValuesService.resolve("property.regexify_slash_format", dummy, faker);
+        var value = this.fakeValuesService.resolve("property.regexify_slash_format", dummy, this.faker);
         assertThat(value, isOneOf("55", "44", "45", "54"));
-        verify(faker).regexify("[45]{2}");
+        verify(this.faker).regexify("[45]{2}");
     }
 
     @Test
     public void regexifyDirective2() {
-        final DummyService dummy = mock(DummyService.class);
+        final var dummy = mock(DummyService.class);
 
-        String value = fakeValuesService.resolve("property.regexify_cell", dummy, faker);
+        var value = this.fakeValuesService.resolve("property.regexify_cell", dummy, this.faker);
         assertThat(value, isOneOf("479", "459"));
-        verify(faker).regexify("4[57]9");
+        verify(this.faker).regexify("4[57]9");
     }
 
     @Test
@@ -117,32 +119,32 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         // #{hello} -> DummyService.hello
 
         // given
-        final DummyService dummy = mock(DummyService.class);
+        final var dummy = mock(DummyService.class);
         doReturn("Yo!").when(dummy).hello();
 
         // when
-        final String actual = fakeValuesService.resolve("property.simpleResolution", dummy, faker);
+        final var actual = this.fakeValuesService.resolve("property.simpleResolution", dummy, this.faker);
 
         // then
         assertThat(actual, is("Yo!"));
         verify(dummy).hello();
-        verifyZeroInteractions(faker);
+        verifyNoInteractions(this.faker);
     }
 
     @Test
     public void resolveKeyToPropertyWithAPropertyWithAnObject() {
         // given
-        final Superhero person = mock(Superhero.class);
-        final DummyService dummy = mock(DummyService.class);
-        doReturn(person).when(faker).superhero();
+        final var person = mock(Superhero.class);
+        final var dummy = mock(DummyService.class);
+        doReturn(person).when(this.faker).superhero();
         doReturn("Luke Cage").when(person).name();
 
         // when
-        final String actual = fakeValuesService.resolve("property.advancedResolution", dummy, faker);
+        final var actual = this.fakeValuesService.resolve("property.advancedResolution", dummy, this.faker);
 
         // then
         assertThat(actual, is("Luke Cage"));
-        verify(faker).superhero();
+        verify(this.faker).superhero();
         verify(person).name();
     }
 
@@ -152,12 +154,12 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         // #{hello} -> DummyService.hello
 
         // given
-        final DummyService dummy = mock(DummyService.class);
-        doReturn(0).when(randomService).nextInt(Mockito.anyInt());
+        final var dummy = mock(DummyService.class);
+        doReturn(0).when(this.randomService).nextInt(Mockito.anyInt());
         doReturn("Yo!").when(dummy).hello();
 
         // when
-        final String actual = fakeValuesService.resolve("property.resolutionWithList", dummy, faker);
+        final var actual = this.fakeValuesService.resolve("property.resolutionWithList", dummy, this.faker);
 
         // then
         assertThat(actual, is("Yo!"));
@@ -167,54 +169,54 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     @Test
     public void resolveKeyWithMultiplePropertiesShouldJoinResults() {
         // given
-        final Superhero person = mock(Superhero.class);
-        final DummyService dummy = mock(DummyService.class);
-        doReturn(person).when(faker).superhero();
+        final var person = mock(Superhero.class);
+        final var dummy = mock(DummyService.class);
+        doReturn(person).when(this.faker).superhero();
 
         doReturn("Yo Superman!").when(dummy).hello();
         doReturn("up up and away").when(person).descriptor();
 
         // when
-        String actual = fakeValuesService.resolve("property.multipleResolution", dummy, faker);
+        var actual = this.fakeValuesService.resolve("property.multipleResolution", dummy, this.faker);
 
         // then
         assertThat(actual, is("Yo Superman! up up and away"));
 
-        verify(faker).superhero();
+        verify(this.faker).superhero();
         verify(person).descriptor();
         verify(dummy).hello();
     }
 
     @Test
     public void testLocaleChain() {
-        final List<Locale> chain = fakeValuesService.localeChain(Locale.SIMPLIFIED_CHINESE);
+        final var chain = this.fakeValuesService.localeChain(Locale.SIMPLIFIED_CHINESE);
 
         assertThat(chain, contains(Locale.SIMPLIFIED_CHINESE, Locale.CHINESE, Locale.ENGLISH));
     }
 
     @Test
     public void testLocaleChainEnglish() {
-        final List<Locale> chain = fakeValuesService.localeChain(Locale.ENGLISH);
+        final var chain = this.fakeValuesService.localeChain(Locale.ENGLISH);
 
         assertThat(chain, contains(Locale.ENGLISH));
     }
 
     @Test
     public void testLocaleChainLanguageOnly() {
-        final List<Locale> chain = fakeValuesService.localeChain(Locale.CHINESE);
+        final var chain = this.fakeValuesService.localeChain(Locale.CHINESE);
 
         assertThat(chain, contains(Locale.CHINESE, Locale.ENGLISH));
     }
 
     @Test
     public void expressionWithInvalidFakerObject() {
-        expressionShouldFailWith("#{ObjectNotOnFaker.methodName}",
+        this.expressionShouldFailWith("#{ObjectNotOnFaker.methodName}",
                 "Unable to resolve #{ObjectNotOnFaker.methodName} directive.");
     }
 
     @Test
     public void expressionWithValidFakerObjectButInvalidMethod() {
-        expressionShouldFailWith("#{Name.nonExistentMethod}",
+        this.expressionShouldFailWith("#{Name.nonExistentMethod}",
                 "Unable to resolve #{Name.nonExistentMethod} directive.");
     }
 
@@ -228,18 +230,18 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
      */
     @Test
     public void expressionWithValidFakerObjectValidMethodInvalidArgs() {
-        expressionShouldFailWith("#{Number.number_between 'x','y'}",
+        this.expressionShouldFailWith("#{Number.number_between 'x','y'}",
                 "Unable to resolve #{Number.number_between 'x','y'} directive.");
     }
 
     @Test
     public void futureDateExpression() throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH  );
+        var dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH  );
 
-        Date now = new Date();
-        Date nowPlus10Days = new Date( now.getTime() + MILLIS_IN_A_DAY * 10 );
+        var now = new Date();
+        var nowPlus10Days = new Date( now.getTime() + MILLIS_IN_A_DAY * 10 );
 
-        Date date = dateFormat.parse( fakeValuesService.expression( "#{date.future '10','TimeUnit.DAYS'}", faker ));
+        var date = dateFormat.parse( this.fakeValuesService.expression( "#{date.future '10','TimeUnit.DAYS'}", this.faker ));
 
         assertThat( date.getTime(), greaterThan( now.getTime() ));
         assertThat( date.getTime(), lessThan( nowPlus10Days.getTime() ));
@@ -247,12 +249,12 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     @Test
     public void pastDateExpression() throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH );
+        var dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH );
 
-        Date now = new Date();
-        Date nowMinus5Hours = new Date( now.getTime() - MILLIS_IN_AN_HOUR * 5 );
+        var now = new Date();
+        var nowMinus5Hours = new Date( now.getTime() - MILLIS_IN_AN_HOUR * 5 );
 
-        Date date = dateFormat.parse( fakeValuesService.expression( "#{date.past '5','TimeUnit.HOURS'}", faker ));
+        var date = dateFormat.parse( this.fakeValuesService.expression( "#{date.past '5','TimeUnit.HOURS'}", this.faker ));
 
         assertThat( date.getTime(), greaterThan( nowMinus5Hours.getTime() ));
         assertThat( date.getTime(), lessThan( now.getTime() ));
@@ -261,7 +263,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     @Test
     public void expressionWithFourArguments() throws ParseException {
 
-        assertThat(fakeValuesService.expression("#{Internet.password '5','8','true','true'}", faker),
+        assertThat(this.fakeValuesService.expression("#{Internet.password '5','8','true','true'}", this.faker),
             matchesRegularExpression("[\\w\\d\\!%#$@_\\^&\\*]{5,8}"));
     }
 
@@ -275,12 +277,12 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
      */
     @Test
     public void expressionCompletelyUnresolvable() {
-        expressionShouldFailWith("#{x}", "Unable to resolve #{x} directive.");
+        this.expressionShouldFailWith("#{x}", "Unable to resolve #{x} directive.");
     }
 
     private void expressionShouldFailWith(String expression, String errorMessage) {
         try {
-            fakeValuesService.expression(expression, faker);
+            this.fakeValuesService.expression(expression, this.faker);
             fail("Should have failed with RuntimeException and message of " + errorMessage);
         } catch (RuntimeException re) {
             assertThat(re.getMessage(), is(errorMessage));
@@ -291,21 +293,21 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         // #{hello} -> DummyService.hello
 
         // given
-        final DummyService dummy = mock(DummyService.class);
+        final var dummy = mock(DummyService.class);
         when(dummy.hello()).thenReturn("1").thenReturn("2");
 
         // when
-        final String actual = fakeValuesService.resolve("property.sameResolution", dummy, faker);
+        final var actual = this.fakeValuesService.resolve("property.sameResolution", dummy, this.faker);
 
         // then
         assertThat(actual, is("1 2"));
-        verifyZeroInteractions(faker);
+        verifyNoInteractions(this.faker);
     }
     @Test
     public void FakeValuesServiceWithNullLocaleTest(){
         try{
-            RandomService r=new RandomService();
-            FakeValuesService f=new FakeValuesService(null,r);
+            var r=new RandomService();
+            var f=new FakeValuesService(null,r);
             fail("Should catch IllegalArgumentException");
         }catch (IllegalArgumentException e){
             assertThat(e.getMessage(),is("locale is required"));
