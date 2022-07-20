@@ -1,14 +1,15 @@
 package com.github.javafaker;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isIn;
+import static org.hamcrest.Matchers.oneOf;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.isIn;
-import static org.hamcrest.Matchers.isOneOf;
-import static org.junit.Assert.assertThat;
+import org.junit.Before;
+import org.junit.Test;
 
 public class OptionsTest extends AbstractFakerTest {
 
@@ -16,44 +17,48 @@ public class OptionsTest extends AbstractFakerTest {
 
     @Before
     public void setupOptions() {
-        options = new String[]{"A", "B", "C"};
+        this.options = new String[]{"A", "B", "C"};
     }
 
     @Test
     public void testOptionWithArray() {
-        assertThat(faker.options().option(options), isOneOf(options));
+        assertThat(this.faker.options().option(this.options),
+            is(oneOf(this.options)));
     }
 
     @Test
     public void testOptionWithVarargsString() {
-        assertThat(faker.options().option("A", "B", "C"), isOneOf(options));
+        assertThat(this.faker.options().option("A", "B", "C"),
+            is(oneOf(this.options)));
     }
 
     @Test
     public void testOptionWithVarargsInteger() {
-        Integer[] integerOptions = new Integer[] { 1, 3, 4, 5};
-        assertThat(faker.options().option(1, 3, 4, 5), isOneOf(integerOptions));
+        Integer[] integerOptions = { 1, 3, 4, 5};
+        assertThat(this.faker.options().option(1, 3, 4, 5),
+            is(oneOf(integerOptions)));
     }
 
     @Test
     public void testOptionWithEnum() {
-        assertThat(faker.options().option(Day.class), isOneOf(Day.values()));
+        assertThat(this.faker.options().option(Day.class),
+            is(oneOf(Day.values())));
     }
 
     @Test
     public void testNextArrayElement() {
-        Integer[] array = new Integer[] { 1, 2, 3, 5, 8, 13, 21 };
+        Integer[] array = { 1, 2, 3, 5, 8, 13, 21 };
 
-        for (int i = 1; i < 10; i++) {
-            assertThat(faker.options().nextElement(array), isIn(array));
+        for (var i = 1; i < 10; i++) {
+            assertThat(this.faker.options().nextElement(array), isIn(array));
         }
     }
 
     @Test
     public void testNextListElement() {
         List<Integer> list = Arrays.asList(1, 2, 3, 5, 8, 13, 21);
-        for (int i = 1; i < 10; i++) {
-            assertThat(faker.options().nextElement(list), isIn(list));
+        for (var i = 1; i < 10; i++) {
+            assertThat(this.faker.options().nextElement(list), isIn(list));
         }
     }
 

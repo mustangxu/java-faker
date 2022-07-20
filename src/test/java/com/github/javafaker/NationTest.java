@@ -5,28 +5,28 @@ import org.junit.Test;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NationTest extends AbstractFakerTest {
 
     @Test
     public void nationality() {
-        assertThat(faker.nation().nationality(), matchesRegularExpression("\\P{Cc}+"));
+        assertThat(this.faker.nation().nationality(), matchesRegularExpression("\\P{Cc}+"));
     }
 
     @Test
     public void language() {
-        assertThat(faker.nation().language(), matchesRegularExpression("[A-Za-z ]+"));
+        assertThat(this.faker.nation().language(), matchesRegularExpression("[A-Za-z ]+"));
     }
 
     @Test
     public void capitalCity() {
-        assertThat(faker.nation().capitalCity(), matchesRegularExpression("[A-Za-z .'()-]+"));
+        assertThat(this.faker.nation().capitalCity(), matchesRegularExpression("[A-Za-z .'()-]+"));
     }
 
     @Test
     public void flag() {
-        String flag = faker.nation().flag();
+        String flag = this.faker.nation().flag();
 
         // all utf8 emoji flags are at least 4 characters long and start with the same char
         assertThat(flag.length(), is(greaterThanOrEqualTo(4)));

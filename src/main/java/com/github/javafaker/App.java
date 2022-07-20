@@ -8,14 +8,14 @@ public class App {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("app.name", this, faker);
+        return this.faker.fakeValuesService().resolve("app.name", this, this.faker);
     }
 
     public String version() {
-        return faker.numerify(faker.fakeValuesService().resolve("app.version", this, faker));
+        return this.faker.numerify(this.faker.fakeValuesService().resolve("app.version", this, this.faker));
     }
 
     public String author() {
-        return faker.fakeValuesService().resolve("app.author", this, faker);
+        return this.faker.fakeValuesService().resolve("app.author", this, this.faker);
     }
 }

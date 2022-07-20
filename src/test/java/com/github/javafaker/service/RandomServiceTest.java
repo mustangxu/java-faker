@@ -13,7 +13,7 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.CombinableMatcher.both;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author pmiklos
@@ -39,37 +39,37 @@ public class RandomServiceTest extends AbstractFakerTest {
     
     @Test(expected = IllegalArgumentException.class)
     public void testPositiveBoundariesOnly() {
-        randomService.nextLong(0L);
+        this.randomService.nextLong(0L);
     }
 
     @Test
     public void testLongWithinBoundary() {
-        assertThat(randomService.nextLong(1), is(0L));
+        assertThat(this.randomService.nextLong(1), is(0L));
 
         for (int i = 1; i < 10; i++) {
-            assertThat(randomService.nextLong(2), lessThan(2L));
+            assertThat(this.randomService.nextLong(2), lessThan(2L));
         }
     }
 
     @Test
     public void testLongMaxBoundary() {
-        assertThat(randomService.nextLong(Long.MAX_VALUE), greaterThan(0L));
-        assertThat(randomService.nextLong(Long.MAX_VALUE), lessThan(Long.MAX_VALUE));
+        assertThat(this.randomService.nextLong(Long.MAX_VALUE), greaterThan(0L));
+        assertThat(this.randomService.nextLong(Long.MAX_VALUE), lessThan(Long.MAX_VALUE));
     }
 
     @Test
     public void testIntInRange() {
         for (int i = 1; i < 100; i++) {
-            assertThat(randomService.nextInt(-5, 5), both(lessThanOrEqualTo(5)).and(greaterThanOrEqualTo(-5)));
+            assertThat(this.randomService.nextInt(-5, 5), both(lessThanOrEqualTo(5)).and(greaterThanOrEqualTo(-5)));
         }
     }
 
     @Test
     public void testHex() {
-        assertThat(randomService.hex(8), matchesRegularExpression("^[0-9A-F]{8}$"));
+        assertThat(this.randomService.hex(8), matchesRegularExpression("^[0-9A-F]{8}$"));
     }
     @Test
     public void testDefaultHex() {
-        assertThat(randomService.hex(), matchesRegularExpression("^[0-9A-F]{8}$"));
+        assertThat(this.randomService.hex(), matchesRegularExpression("^[0-9A-F]{8}$"));
     }
 }

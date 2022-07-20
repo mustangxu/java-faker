@@ -8,14 +8,14 @@ public class Lebowski {
     }
 
     public String actor() {
-        return faker.fakeValuesService().resolve("lebowski.actors", this, faker);
+        return this.faker.fakeValuesService().resolve("lebowski.actors", this, this.faker);
     }
 
     public String character() {
-        return faker.fakeValuesService().resolve("lebowski.characters", this, faker);
+        return this.faker.fakeValuesService().resolve("lebowski.characters", this, this.faker);
     }
 
     public String quote() {
-        return faker.fakeValuesService().resolve("lebowski.quotes", this, faker);
+        return this.faker.fakeValuesService().resolve("lebowski.quotes", this, this.faker);
     }
 }

@@ -9,14 +9,14 @@ public class Barcode {
     }
 
     public String type() {
-        return faker.resolve("barcode.types");
+        return this.faker.resolve("barcode.types");
     }
 
     public String data(){
-        return faker.resolve("barcode.datas");
+        return this.faker.resolve("barcode.datas");
     }
 
     public String typeAndData(){
-        return faker.resolve("barcode.typeAndData");
+        return this.faker.resolve("barcode.typeAndData");
     }
 }

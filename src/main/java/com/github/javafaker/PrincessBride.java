@@ -8,10 +8,10 @@ public class PrincessBride {
     }
 
     public String character() {
-        return faker.resolve("princess_bride.characters");
+        return this.faker.resolve("princess_bride.characters");
     }
 
     public String quote() {
-        return faker.resolve("princess_bride.quotes");
+        return this.faker.resolve("princess_bride.quotes");
     }
 }

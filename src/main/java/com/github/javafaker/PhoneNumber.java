@@ -8,11 +8,11 @@ public class PhoneNumber {
     }
 
     public String cellPhone() {
-        return faker.numerify(faker.fakeValuesService().resolve("cell_phone.formats", this, faker));
+        return this.faker.numerify(this.faker.fakeValuesService().resolve("cell_phone.formats", this, this.faker));
     }
 
     public String phoneNumber() {
-        return faker.numerify(faker.fakeValuesService().resolve("phone_number.formats", this, faker));
+        return this.faker.numerify(this.faker.fakeValuesService().resolve("phone_number.formats", this, this.faker));
     }
 
     public String extension() {
@@ -24,7 +24,7 @@ public class PhoneNumber {
         for (int i = 0; i < length; i++) {
             subscriberNumber.append("#");
         }
-        return faker.numerify(subscriberNumber.toString());
+        return this.faker.numerify(subscriberNumber.toString());
     }
 
     public String subscriberNumber() {

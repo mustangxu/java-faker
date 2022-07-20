@@ -1,8 +1,8 @@
 package com.github.javafaker.service;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
@@ -16,9 +16,8 @@ import java.util.Locale;
 import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 
 import com.github.javafaker.AbstractFakerTest;
 import com.github.javafaker.Faker;
@@ -36,9 +35,8 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     @Override
     @Before
-    public void before() {
+    public void before() throws Exception {
         super.before();
-        MockitoAnnotations.initMocks(this);
 
         // always return the first element
         when(this.randomService.nextInt(anyInt())).thenReturn(0);
@@ -63,7 +61,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     @Test
     public void safeFetchShouldReturnValueInList() {
-        doReturn(0).when(this.randomService).nextInt(Mockito.anyInt());
+        doReturn(0).when(this.randomService).nextInt(ArgumentMatchers.anyInt());
         assertThat(this.fakeValuesService.safeFetch("property.dummy", null), is("x"));
     }
 
@@ -74,7 +72,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     @Test
     public void safeFetchShouldReturnEmptyStringWhenPropertyDoesntExist() {
-        assertThat(this.fakeValuesService.safeFetch("property.dummy2", ""), isEmptyString());
+        assertThat(this.fakeValuesService.safeFetch("property.dummy2", ""), is(emptyString()));
     }
 
     @Test
@@ -92,7 +90,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final var dummy = mock(DummyService.class);
 
         var value = this.fakeValuesService.resolve("property.regexify1", dummy, this.faker);
-        assertThat(value, isOneOf("55", "44", "45", "54"));
+        assertThat(value, is(oneOf("55", "44", "45", "54")));
         verify(this.faker).regexify("[45]{2}");
     }
 
@@ -101,7 +99,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final var dummy = mock(DummyService.class);
 
         var value = this.fakeValuesService.resolve("property.regexify_slash_format", dummy, this.faker);
-        assertThat(value, isOneOf("55", "44", "45", "54"));
+        assertThat(value, is(oneOf("55", "44", "45", "54")));
         verify(this.faker).regexify("[45]{2}");
     }
 
@@ -110,7 +108,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final var dummy = mock(DummyService.class);
 
         var value = this.fakeValuesService.resolve("property.regexify_cell", dummy, this.faker);
-        assertThat(value, isOneOf("479", "459"));
+        assertThat(value, is(oneOf("479", "459")));
         verify(this.faker).regexify("4[57]9");
     }
 
@@ -155,7 +153,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
         // given
         final var dummy = mock(DummyService.class);
-        doReturn(0).when(this.randomService).nextInt(Mockito.anyInt());
+        doReturn(0).when(this.randomService).nextInt(ArgumentMatchers.anyInt());
         doReturn("Yo!").when(dummy).hello();
 
         // when
@@ -261,7 +259,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     }
 
     @Test
-    public void expressionWithFourArguments() throws ParseException {
+    public void expressionWithFourArguments() {
 
         assertThat(this.fakeValuesService.expression("#{Internet.password '5','8','true','true'}", this.faker),
             matchesRegularExpression("[\\w\\d\\!%#$@_\\^&\\*]{5,8}"));
@@ -307,7 +305,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     public void FakeValuesServiceWithNullLocaleTest(){
         try{
             var r=new RandomService();
-            var f=new FakeValuesService(null,r);
+            new FakeValuesService(null, r);
             fail("Should catch IllegalArgumentException");
         }catch (IllegalArgumentException e){
             assertThat(e.getMessage(),is("locale is required"));

@@ -8,22 +8,22 @@ public class StarTrek {
     }
 
     public String character() {
-        return faker.fakeValuesService().resolve("star_trek.character", this, faker);
+        return this.faker.fakeValuesService().resolve("star_trek.character", this, this.faker);
     }
 
     public String location() {
-        return faker.fakeValuesService().resolve("star_trek.location", this, faker);
+        return this.faker.fakeValuesService().resolve("star_trek.location", this, this.faker);
     }
 
     public String specie() {
-        return faker.fakeValuesService().resolve("star_trek.specie", this, faker);
+        return this.faker.fakeValuesService().resolve("star_trek.specie", this, this.faker);
     }
 
     public String villain() {
-        return faker.fakeValuesService().resolve("star_trek.villain", this, faker);
+        return this.faker.fakeValuesService().resolve("star_trek.villain", this, this.faker);
     }
 
     public String klingon() {
-        return faker.fakeValuesService().resolve("star_trek.klingon", this, faker);
+        return this.faker.fakeValuesService().resolve("star_trek.klingon", this, this.faker);
     }
 }

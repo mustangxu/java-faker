@@ -8,18 +8,18 @@ public class Book {
     }
 
     public String author() {
-        return faker.fakeValuesService().resolve("book.author", this, faker);
+        return this.faker.fakeValuesService().resolve("book.author", this, this.faker);
     }
 
     public String title() {
-        return faker.fakeValuesService().resolve("book.title", this, faker);
+        return this.faker.fakeValuesService().resolve("book.title", this, this.faker);
     }
 
     public String publisher() {
-        return faker.fakeValuesService().resolve("book.publisher", this, faker);
+        return this.faker.fakeValuesService().resolve("book.publisher", this, this.faker);
     }
 
     public String genre() {
-        return faker.fakeValuesService().resolve("book.genre", this, faker);
+        return this.faker.fakeValuesService().resolve("book.genre", this, this.faker);
     }
 }

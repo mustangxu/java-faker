@@ -22,7 +22,8 @@ public class MatchesRegularExpression extends TypeSafeMatcher<String> {
         description.appendText("to match the regular expression " + this.regularExpression);
     }
 
-    public static <T> Matcher<String> matchesRegularExpression(String regularExpression) {
+    public static Matcher<String>
+            matchesRegularExpression(String regularExpression) {
         return new MatchesRegularExpression(regularExpression);
     }
 }

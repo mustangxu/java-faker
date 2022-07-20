@@ -1,24 +1,24 @@
 package com.github.javafaker;
 
-import org.junit.Test;
-
 import static com.github.javafaker.matchers.IsStringWithContents.isStringWithContents;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import org.junit.Test;
 
 public class BusinessTest extends AbstractFakerTest {
     @Test
     public void creditCardNumber() {
-        assertThat(faker.business().creditCardNumber(), isStringWithContents());
+        assertThat(this.faker.business().creditCardNumber(), isStringWithContents());
     }
 
     @Test
     public void creditCardType() {
-        assertThat(faker.business().creditCardType(), isStringWithContents());
+        assertThat(this.faker.business().creditCardType(), isStringWithContents());
     }
 
     @Test
     public void creditCardExpiry() {
-        assertThat(faker.business().creditCardExpiry(), isStringWithContents());
+        assertThat(this.faker.business().creditCardExpiry(), isStringWithContents());
     }
 
 }

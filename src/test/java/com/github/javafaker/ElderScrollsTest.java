@@ -2,51 +2,60 @@
 
 package com.github.javafaker;
 
-import org.junit.Test;
-
-import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
+
+import org.junit.Test;
 
 public class ElderScrollsTest extends AbstractFakerTest  {
 
     @Test
     public void testCity() {
-        assertThat(faker.elderScrolls().city(), not(isEmptyOrNullString()));
+        assertThat(this.faker.elderScrolls().city(),
+            not(is(emptyOrNullString())));
     }
 
     @Test
     public void testCreature() {
-        assertThat(faker.elderScrolls().creature(), not(isEmptyOrNullString()));
+        assertThat(this.faker.elderScrolls().creature(),
+            not(is(emptyOrNullString())));
     }
 
     @Test
     public void testDragon() {
-        assertThat(faker.elderScrolls().dragon(), not(isEmptyOrNullString()));
+        assertThat(this.faker.elderScrolls().dragon(),
+            not(is(emptyOrNullString())));
     }
 
     @Test
     public void testFirstName() {
-        assertThat(faker.elderScrolls().firstName(), not(isEmptyOrNullString()));
+        assertThat(this.faker.elderScrolls().firstName(),
+            not(is(emptyOrNullString())));
     }
 
     @Test
     public void testLastName() {
-        assertThat(faker.elderScrolls().lastName(), not(isEmptyOrNullString()));
+        assertThat(this.faker.elderScrolls().lastName(),
+            not(is(emptyOrNullString())));
     }
 
     @Test
     public void testRace() {
-        assertThat(faker.elderScrolls().race(), not(isEmptyOrNullString()));
+        assertThat(this.faker.elderScrolls().race(),
+            not(is(emptyOrNullString())));
     }
 
     @Test
     public void testRegion() {
-        assertThat(faker.elderScrolls().region(), not(isEmptyOrNullString()));
+        assertThat(this.faker.elderScrolls().region(),
+            not(is(emptyOrNullString())));
     }
 
     @Test
     public void testQuote() {
-        assertThat(faker.elderScrolls().quote(), not(isEmptyOrNullString()));
+        assertThat(this.faker.elderScrolls().quote(),
+            not(is(emptyOrNullString())));
     }
 }

@@ -9,11 +9,11 @@ public class ProgrammingLanguage {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("programming_language.name", this, faker);
+        return this.faker.fakeValuesService().resolve("programming_language.name", this, this.faker);
     }
 
     public String creator() {
-        return faker.fakeValuesService().resolve("programming_language.creator", this, faker);
+        return this.faker.fakeValuesService().resolve("programming_language.creator", this, this.faker);
     }
 
 }

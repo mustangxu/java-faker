@@ -1,10 +1,9 @@
 package com.github.javafaker.idnumbers;
 
-import com.github.javafaker.Faker;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import com.github.javafaker.Faker;
 
 /**
  * Implementation based on the definition at
@@ -16,9 +15,9 @@ public class SvSEIdNumber {
     private static final String[] validPatterns = {"######-####", "######+####"};
 
     public String getValidSsn(Faker f) {
-        String candidate = "";
-        while (!validSwedishSsn(candidate)) {
-            String pattern = getPattern(f);
+        var candidate = "";
+        while (!this.validSwedishSsn(candidate)) {
+            var pattern = this.getPattern(f);
             candidate = f.numerify(pattern);
         }
 
@@ -26,9 +25,9 @@ public class SvSEIdNumber {
     }
 
     public String getInvalidSsn(Faker f) {
-        String candidate = "121212-1212"; // Seed with a valid number
-        while (validSwedishSsn(candidate)) {
-            String pattern = getPattern(f);
+        var candidate = "121212-1212"; // Seed with a valid number
+        while (this.validSwedishSsn(candidate)) {
+            var pattern = this.getPattern(f);
             candidate = f.numerify(pattern);
         }
 
@@ -45,61 +44,61 @@ public class SvSEIdNumber {
         }
 
         try {
-            if (parseDate(ssn)) {
+            if (this.parseDate(ssn)) {
                 return false;
             }
         } catch (ParseException e) {
             return false;
         }
 
-        int calculatedChecksum = calculateChecksum(ssn);
-        int checksum = Integer.parseInt(ssn.substring(10, 11));
+        var calculatedChecksum = this.calculateChecksum(ssn);
+        var checksum = Integer.parseInt(ssn.substring(10, 11));
         return checksum == calculatedChecksum;
     }
 
     private boolean parseDate(String ssn) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
-        String dateString = ssn.substring(0, 6);
-        Date date = sdf.parse(dateString);
+        var sdf = new SimpleDateFormat("yyMMdd");
+        var dateString = ssn.substring(0, 6);
+        var date = sdf.parse(dateString);
 
         // want to check that the parsed date is equal to the supplied data, most of the attempts will fail
-        String reversed = sdf.format(date);
+        var reversed = sdf.format(date);
         return !reversed.equals(dateString);
     }
 
     private int calculateChecksum(String number) {
-        String dateString = number.substring(0, 6);
-        String birthNumber = number.substring(7, 10);
+        var dateString = number.substring(0, 6);
+        var birthNumber = number.substring(7, 10);
 
-        String calculatedNumber = calculateDigits(dateString + birthNumber);
-        int sum = calculateDigitSum(calculatedNumber);
+        var calculatedNumber = calculateDigits(dateString + birthNumber);
+        var sum = calculateDigitSum(calculatedNumber);
 
-        int lastDigit = (sum % 10);
-        int difference = 10 - lastDigit;
+        var lastDigit = sum % 10;
+        var difference = 10 - lastDigit;
 
-        return (difference % 10);
+        return difference % 10;
     }
 
-    private String calculateDigits(String numbers) {
-        String calculatedNumbers = "";
-        for (int i = 0; i < 9; i++) {
+    private static String calculateDigits(String numbers) {
+        var calculatedNumbers = new StringBuilder();
+        for (var i = 0; i < 9; i++) {
             int res;
-            int n = Integer.parseInt(numbers.substring(i, i + 1));
+            var n = Integer.parseInt(numbers.substring(i, i + 1));
             if (i % 2 == 0) {
                 res = n * 2;
             } else {
                 res = n;
             }
 
-            calculatedNumbers += res;
+            calculatedNumbers.append(res);
         }
-        return calculatedNumbers;
+        return calculatedNumbers.toString();
     }
 
-    private int calculateDigitSum(String numbers) {
-        int sum = 0;
-        for (int i = 0; i < numbers.length(); i++) {
-            int n = Integer.parseInt(numbers.substring(i, i + 1));
+    private static int calculateDigitSum(String numbers) {
+        var sum = 0;
+        for (var i = 0; i < numbers.length(); i++) {
+            var n = Integer.parseInt(numbers.substring(i, i + 1));
             sum += n;
         }
         return sum;

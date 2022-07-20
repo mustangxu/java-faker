@@ -8,23 +8,23 @@ public class Buffy {
     }
 
     public String characters() {
-        return faker.fakeValuesService().resolve("buffy.characters", this, faker);
+        return this.faker.fakeValuesService().resolve("buffy.characters", this, this.faker);
     }
 
     public String quotes() {
-        return faker.fakeValuesService().resolve("buffy.quotes", this, faker);
+        return this.faker.fakeValuesService().resolve("buffy.quotes", this, this.faker);
     }
 
     public String celebrities() {
-        return faker.fakeValuesService().resolve("buffy.celebrities", this, faker);
+        return this.faker.fakeValuesService().resolve("buffy.celebrities", this, this.faker);
     }
 
     public String bigBads() {
-        return faker.fakeValuesService().resolve("buffy.big_bads", this, faker);
+        return this.faker.fakeValuesService().resolve("buffy.big_bads", this, this.faker);
     }
 
     public String episodes() {
-        return faker.fakeValuesService().resolve("buffy.episodes", this, faker);
+        return this.faker.fakeValuesService().resolve("buffy.episodes", this, this.faker);
     }
 
 }

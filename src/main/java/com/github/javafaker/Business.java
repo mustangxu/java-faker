@@ -9,14 +9,14 @@ public class Business {
     }
 
     public String creditCardNumber() {
-        return faker.fakeValuesService().resolve("business.credit_card_numbers", this, faker);
+        return this.faker.fakeValuesService().resolve("business.credit_card_numbers", this, this.faker);
     }
 
     public String creditCardType() {
-        return faker.fakeValuesService().resolve("business.credit_card_types", this, faker);
+        return this.faker.fakeValuesService().resolve("business.credit_card_types", this, this.faker);
     }
 
     public String creditCardExpiry() {
-        return faker.fakeValuesService().resolve("business.credit_card_expiry_dates", this, faker);
+        return this.faker.fakeValuesService().resolve("business.credit_card_expiry_dates", this, this.faker);
     }
 }

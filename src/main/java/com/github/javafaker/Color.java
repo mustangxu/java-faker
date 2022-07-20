@@ -8,7 +8,7 @@ public class Color {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("color.name", this, faker);
+        return this.faker.fakeValuesService().resolve("color.name", this, this.faker);
     }
 
     public String hex() {
@@ -16,7 +16,7 @@ public class Color {
     }
 
     public String hex(boolean includeHashSign) {
-        String hexString = faker.random().hex(6);
+        String hexString = this.faker.random().hex(6);
         if(includeHashSign)
             return "#" + hexString;
         return hexString;

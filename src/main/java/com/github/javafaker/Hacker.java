@@ -8,22 +8,22 @@ public class Hacker {
     }
 
     public String abbreviation() {
-        return faker.fakeValuesService().resolve("hacker.abbreviation", this, faker);
+        return this.faker.fakeValuesService().resolve("hacker.abbreviation", this, this.faker);
     }
 
     public String adjective() {
-        return faker.fakeValuesService().resolve("hacker.adjective", this, faker);
+        return this.faker.fakeValuesService().resolve("hacker.adjective", this, this.faker);
     }
 
     public String noun() {
-        return faker.fakeValuesService().resolve("hacker.noun", this, faker);
+        return this.faker.fakeValuesService().resolve("hacker.noun", this, this.faker);
     }
 
     public String verb() {
-        return faker.fakeValuesService().resolve("hacker.verb", this, faker);
+        return this.faker.fakeValuesService().resolve("hacker.verb", this, this.faker);
     }
 
     public String ingverb() {
-        return faker.fakeValuesService().resolve("hacker.ingverb", this, faker);
+        return this.faker.fakeValuesService().resolve("hacker.ingverb", this, this.faker);
     }
 }

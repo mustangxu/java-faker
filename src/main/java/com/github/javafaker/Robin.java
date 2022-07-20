@@ -8,6 +8,6 @@ public class Robin {
     }
 
     public String quote() {
-        return faker.fakeValuesService().resolve("robin.quotes", this, faker);
+        return this.faker.fakeValuesService().resolve("robin.quotes", this, this.faker);
     }
 }

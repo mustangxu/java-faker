@@ -21,11 +21,11 @@ public class RandomService {
     }
 
     public int nextInt(int n) {
-        return random.nextInt(n);
+        return this.random.nextInt(n);
     }
 
     public long nextLong() {
-        return random.nextLong();
+        return this.random.nextLong();
     }
 
     // lifted from http://stackoverflow.com/questions/2546078/java-random-long-number-in-0-x-n-range
@@ -36,7 +36,7 @@ public class RandomService {
 
         long bits, val;
         do {
-            long randomLong = random.nextLong();
+            long randomLong = this.random.nextLong();
             bits = (randomLong << 1) >>> 1;
             val = bits % n;
         } while (bits - val + (n - 1) < 0L);
@@ -44,15 +44,15 @@ public class RandomService {
     }
 
     public double nextDouble() {
-        return random.nextDouble();
+        return this.random.nextDouble();
     }
 
     public Boolean nextBoolean() {
-        return random.nextBoolean();
+        return this.random.nextBoolean();
     }
 
     public Integer nextInt(int min, int max) {
-        return random.nextInt((max - min) + 1) + min;
+        return this.random.nextInt((max - min) + 1) + min;
     }
 
     public String hex() {

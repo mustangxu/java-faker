@@ -9,33 +9,33 @@ public class ElderScrolls {
     }
 
     public String race() {
-        return faker.fakeValuesService().resolve("games.elder_scrolls.race", this, faker);
+        return this.faker.fakeValuesService().resolve("games.elder_scrolls.race", this, this.faker);
     }
 
     public String creature() {
-        return faker.fakeValuesService().resolve("games.elder_scrolls.creature", this, faker);
+        return this.faker.fakeValuesService().resolve("games.elder_scrolls.creature", this, this.faker);
     }
 
     public String region() {
-        return faker.fakeValuesService().resolve("games.elder_scrolls.region", this, faker);
+        return this.faker.fakeValuesService().resolve("games.elder_scrolls.region", this, this.faker);
     }
 
     public String dragon() {
-        return faker.fakeValuesService().resolve("games.elder_scrolls.dragon", this, faker);
+        return this.faker.fakeValuesService().resolve("games.elder_scrolls.dragon", this, this.faker);
     }
 
     public String city() {
-        return faker.fakeValuesService().resolve("games.elder_scrolls.city", this, faker);
+        return this.faker.fakeValuesService().resolve("games.elder_scrolls.city", this, this.faker);
     }
 
     public String firstName() {
-        return faker.fakeValuesService().resolve("games.elder_scrolls.first_name", this, faker);
+        return this.faker.fakeValuesService().resolve("games.elder_scrolls.first_name", this, this.faker);
     }
 
     public String lastName() {
-        return faker.fakeValuesService().resolve("games.elder_scrolls.last_name", this, faker);
+        return this.faker.fakeValuesService().resolve("games.elder_scrolls.last_name", this, this.faker);
     }
 
-    public String quote() {return faker.fakeValuesService().resolve("games.elder_scrolls.quote", this, faker);
+    public String quote() {return this.faker.fakeValuesService().resolve("games.elder_scrolls.quote", this, this.faker);
     }
 }

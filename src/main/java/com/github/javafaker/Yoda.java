@@ -8,6 +8,6 @@ public class Yoda {
     }
 
     public String quote() {
-        return faker.resolve("yoda.quotes");
+        return this.faker.resolve("yoda.quotes");
     }
 }

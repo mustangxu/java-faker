@@ -10,31 +10,31 @@ public class Country {
     }
 
     public String flag() {
-        return flagUrl + faker.fakeValuesService().resolve("country.code2", this, faker) + ".png";
+        return this.flagUrl + this.faker.fakeValuesService().resolve("country.code2", this, this.faker) + ".png";
     }
 
     public String countryCode2() {
-        return faker.fakeValuesService().resolve("country.code2", this, faker);
+        return this.faker.fakeValuesService().resolve("country.code2", this, this.faker);
     }
 
     public String countryCode3() {
-        return faker.fakeValuesService().resolve("country.code3", this, faker);
+        return this.faker.fakeValuesService().resolve("country.code3", this, this.faker);
     }
 
     public String capital() {
-        return faker.fakeValuesService().resolve("country.capital", this, faker);
+        return this.faker.fakeValuesService().resolve("country.capital", this, this.faker);
     }
 
     public String currency() {
-        return faker.fakeValuesService().resolve("country.currency", this, faker);
+        return this.faker.fakeValuesService().resolve("country.currency", this, this.faker);
     }
 
     public String currencyCode() {
-        return faker.fakeValuesService().resolve("country.currency_code", this, faker);
+        return this.faker.fakeValuesService().resolve("country.currency_code", this, this.faker);
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("country.name", this, faker);
+        return this.faker.fakeValuesService().resolve("country.name", this, this.faker);
     }
 
 }

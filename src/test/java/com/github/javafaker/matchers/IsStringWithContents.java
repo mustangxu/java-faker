@@ -21,7 +21,7 @@ public class IsStringWithContents extends TypeSafeMatcher<String> {
         description.appendText("is string with contents");
     }
 
-    public static <T> Matcher<String> isStringWithContents() {
+    public static Matcher<String> isStringWithContents() {
         return new IsStringWithContents();
     }
 

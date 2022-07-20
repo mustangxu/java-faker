@@ -9,25 +9,25 @@ public class Educator {
 
     // TODO - move these all out to en.yml by default. 
     public String university() {
-        return faker.fakeValuesService().resolve("educator.name", this, faker) 
+        return this.faker.fakeValuesService().resolve("educator.name", this, this.faker) 
                 + " " 
-                + faker.fakeValuesService().resolve("educator.tertiary.type", this, faker);
+                + this.faker.fakeValuesService().resolve("educator.tertiary.type", this, this.faker);
     }
 
     public String course() {
-        return faker.fakeValuesService().resolve("educator.tertiary.degree.type", this, faker)
+        return this.faker.fakeValuesService().resolve("educator.tertiary.degree.type", this, this.faker)
                 + " "
-                + faker.fakeValuesService().resolve("educator.tertiary.degree.subject", this, faker);
+                + this.faker.fakeValuesService().resolve("educator.tertiary.degree.subject", this, this.faker);
     }
 
     public String secondarySchool() {
-        return faker.fakeValuesService().resolve("educator.name", this, faker)
+        return this.faker.fakeValuesService().resolve("educator.name", this, this.faker)
                 + " "
-                + faker.fakeValuesService().resolve("educator.secondary", this, faker);
+                + this.faker.fakeValuesService().resolve("educator.secondary", this, this.faker);
     }
 
     public String campus() {
-        return faker.fakeValuesService().resolve("educator.name", this, faker) + " Campus";
+        return this.faker.fakeValuesService().resolve("educator.name", this, this.faker) + " Campus";
     }
 
 }

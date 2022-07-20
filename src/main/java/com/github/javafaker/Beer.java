@@ -8,22 +8,22 @@ public class Beer {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("beer.name", this, faker);
+        return this.faker.fakeValuesService().resolve("beer.name", this, this.faker);
     }
 
     public String style() {
-        return faker.fakeValuesService().resolve("beer.style", this, faker);
+        return this.faker.fakeValuesService().resolve("beer.style", this, this.faker);
     }
 
     public String hop() {
-        return faker.fakeValuesService().resolve("beer.hop", this, faker);
+        return this.faker.fakeValuesService().resolve("beer.hop", this, this.faker);
     }
 
     public String yeast() {
-        return faker.fakeValuesService().resolve("beer.yeast", this, faker);
+        return this.faker.fakeValuesService().resolve("beer.yeast", this, this.faker);
     }
 
     public String malt() {
-        return faker.fakeValuesService().resolve("beer.malt", this, faker);
+        return this.faker.fakeValuesService().resolve("beer.malt", this, this.faker);
     }
 }

@@ -1,7 +1,6 @@
 package com.github.javafaker;
 
 import java.nio.ByteBuffer;
-import java.nio.MappedByteBuffer;
 import java.nio.charset.Charset;
 import java.util.List;
 
@@ -16,22 +15,22 @@ public class Nation {
     }
 
     public String nationality() {
-        return faker.fakeValuesService().resolve("nation.nationality", this, faker);
+        return this.faker.fakeValuesService().resolve("nation.nationality", this, this.faker);
     }
 
     public String language() {
-        return faker.fakeValuesService().resolve("nation.language", this, faker);
+        return this.faker.fakeValuesService().resolve("nation.language", this, this.faker);
     }
 
     public String capitalCity() {
-        return faker.fakeValuesService().resolve("nation.capital_city", this, faker);
+        return this.faker.fakeValuesService().resolve("nation.capital_city", this, this.faker);
     }
 
     public String flag() {
         @SuppressWarnings("unchecked")
-        List<Integer> flagInts = (List<Integer>) faker.fakeValuesService().fetch("nation.flag");
+        var flagInts = (List<Integer>) this.faker.fakeValuesService().fetch("nation.flag");
 
-        ByteBuffer byteBuffer = MappedByteBuffer.allocate(flagInts.size());
+        var byteBuffer = ByteBuffer.allocate(flagInts.size());
 
         for (Integer flagInt : flagInts) {
             byteBuffer.put(flagInt.byteValue());

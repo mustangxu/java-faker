@@ -13,27 +13,27 @@ public class Relationships {
     }
 
     public String direct() {
-        return faker.resolve("relationship.familial.direct");
+        return this.faker.resolve("relationship.familial.direct");
     }
 
     public String extended() {
-        return faker.resolve("relationship.familial.extended");
+        return this.faker.resolve("relationship.familial.extended");
     }
 
     public String inLaw() {
-        return faker.resolve("relationship.in_law");
+        return this.faker.resolve("relationship.in_law");
     }
 
     public String spouse() {
-        return faker.resolve("relationship.spouse");
+        return this.faker.resolve("relationship.spouse");
     }
 
     public String parent() {
-        return faker.resolve("relationship.parent");
+        return this.faker.resolve("relationship.parent");
     }
 
     public String sibling() {
-        return faker.resolve("relationship.sibling");
+        return this.faker.resolve("relationship.sibling");
     }
 
     public String any() {
@@ -42,9 +42,9 @@ public class Relationships {
         try {
             Method[] methods = Relationships.class.getDeclaredMethods();
             methods = ArrayUtils.removeElement(methods, currentMethod);
-            int indx = faker.random().nextInt(methods.length);
+            int indx = this.faker.random().nextInt(methods.length);
             Method runMethod = methods[indx];
-            Relationships relationships = new Relationships(faker);
+            Relationships relationships = new Relationships(this.faker);
             return (String)runMethod.invoke(relationships);
         } catch (SecurityException e) {
             throw new RuntimeException("SecurityException: " + e.getMessage());

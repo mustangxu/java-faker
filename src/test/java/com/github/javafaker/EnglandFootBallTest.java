@@ -1,11 +1,11 @@
 package com.github.javafaker;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.not;
+
 import org.junit.Test;
-
-
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
 
 public class EnglandFootBallTest extends AbstractFakerTest{
 
@@ -13,14 +13,14 @@ public class EnglandFootBallTest extends AbstractFakerTest{
 
     @Test
     public void testLeague() {
-        String league = faker.englandfootball().league();
+        var league = this.faker.englandfootball().league();
         assertThat(league, not(isEmptyOrNullString()));
 
     }
 
     @Test
     public void testTeam() {
-        String team = faker.englandfootball().team();
+        var team = this.faker.englandfootball().team();
         assertThat(team, not(isEmptyOrNullString()));
 
     }

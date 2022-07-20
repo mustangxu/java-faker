@@ -21,8 +21,8 @@ public class RepeatRule implements TestRule {
 
     @Override
     public void evaluate() throws Throwable {
-      for( int i = 0; i < times; i++ ) {
-        statement.evaluate();
+      for( int i = 0; i < this.times; i++ ) {
+        this.statement.evaluate();
       }
     }
   }

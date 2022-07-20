@@ -8,6 +8,6 @@ public class Hipster {
     }
 
     public String word() {
-        return faker.resolve("hipster.words");
+        return this.faker.resolve("hipster.words");
     }
 }

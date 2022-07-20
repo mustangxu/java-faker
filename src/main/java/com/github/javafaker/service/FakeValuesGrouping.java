@@ -6,17 +6,17 @@ import java.util.Map;
 
 public class FakeValuesGrouping implements FakeValuesInterface {
 
-    private List<FakeValues> fakeValuesList = new ArrayList<FakeValues>();
+    private List<FakeValues> fakeValuesList = new ArrayList<>();
 
     public void add(FakeValues fakeValues) {
-        fakeValuesList.add(fakeValues);
+        this.fakeValuesList.add(fakeValues);
     }
 
     @Override
     @SuppressWarnings({"unchecked", "rawtypes"})
     public Map get(String key) {
         Map result = null;
-        for (FakeValues fakeValues : fakeValuesList) {
+        for (FakeValues fakeValues : this.fakeValuesList) {
             if (fakeValues.supportsPath(key)) {
                 if (result != null) {
                     final Map newResult = fakeValues.get(key);

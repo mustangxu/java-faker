@@ -8,18 +8,18 @@ public class Hobbit {
     }
 
     public String character() {
-        return faker.fakeValuesService().resolve("hobbit.character", this, faker);
+        return this.faker.fakeValuesService().resolve("hobbit.character", this, this.faker);
     }
 
     public String thorinsCompany() {
-        return faker.fakeValuesService().resolve("hobbit.thorins_company", this, faker);
+        return this.faker.fakeValuesService().resolve("hobbit.thorins_company", this, this.faker);
     }
 
     public String quote() {
-        return faker.fakeValuesService().resolve("hobbit.quote", this, faker);
+        return this.faker.fakeValuesService().resolve("hobbit.quote", this, this.faker);
     }
 
     public String location() {
-        return faker.fakeValuesService().resolve("hobbit.location", this, faker);
+        return this.faker.fakeValuesService().resolve("hobbit.location", this, this.faker);
     }
 }

@@ -1,21 +1,22 @@
 package com.github.javafaker;
 
-import org.junit.Test;
-
-import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
+
+import org.junit.Test;
 
 public class MountainTest extends AbstractFakerTest {
     @Test
     public void testMountainName() {
-        String mountainName = faker.mountain().name();
-        assertThat(mountainName, not(isEmptyOrNullString()));
+        var mountainName = this.faker.mountain().name();
+        assertThat(mountainName, not(is(emptyOrNullString())));
     }
 
     @Test
     public void testMountainLeague() {
-        String mountainLeague = faker.mountain().range();
-        assertThat(mountainLeague, not(isEmptyOrNullString()));
+        var mountainLeague = this.faker.mountain().range();
+        assertThat(mountainLeague, not(is(emptyOrNullString())));
     }
 }

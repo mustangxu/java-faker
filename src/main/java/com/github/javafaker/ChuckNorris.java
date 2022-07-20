@@ -8,6 +8,6 @@ public class ChuckNorris {
     }
 
     public String fact() {
-        return faker.fakeValuesService().resolve("chuck_norris.fact", this, faker);
+        return this.faker.fakeValuesService().resolve("chuck_norris.fact", this, this.faker);
     }
 }

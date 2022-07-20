@@ -20,7 +20,7 @@ public class Weather {
      * Generates a short weather description.
      */
     public String description() {
-        return faker.resolve("weather.description");
+        return this.faker.resolve("weather.description");
     }
 
     /**
@@ -60,6 +60,6 @@ public class Weather {
     }
 
     private String temperature(int minTemperature, int maxTemperature, String degreeKey) {
-        return faker.random().nextInt(minTemperature, maxTemperature) + faker.resolve(degreeKey);
+        return this.faker.random().nextInt(minTemperature, maxTemperature) + this.faker.resolve(degreeKey);
     }
 }

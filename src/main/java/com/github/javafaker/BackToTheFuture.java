@@ -8,14 +8,14 @@ public class BackToTheFuture {
     }
 
     public String character() {
-        return faker.resolve("back_to_the_future.characters");
+        return this.faker.resolve("back_to_the_future.characters");
     }
 
     public String date() {
-        return faker.resolve("back_to_the_future.dates");
+        return this.faker.resolve("back_to_the_future.dates");
     }
 
     public String quote() {
-        return faker.resolve("back_to_the_future.quotes");
+        return this.faker.resolve("back_to_the_future.quotes");
     }
 }

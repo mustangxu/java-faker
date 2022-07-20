@@ -3,11 +3,11 @@ package com.github.javafaker;
 import org.apache.commons.lang3.StringUtils;
 
 public class Name {
-    
+
     private final Faker faker;
 
     /**
-     * Internal constructor, not to be used by clients.  Instances of {@link Name} should be accessed via 
+     * Internal constructor, not to be used by clients.  Instances of {@link Name} should be accessed via
      * {@link Faker#name()}.
      */
     protected Name(Faker faker) {
@@ -26,13 +26,13 @@ public class Name {
      * @return a random name with given and family names and an optional suffix.
      */
     public String name() {
-        return faker.fakeValuesService().resolve("name.name", this, faker);
+        return this.faker.fakeValuesService().resolve("name.name", this, this.faker);
     }
 
     /**
      * <p>
      *      A multipart name composed of an optional prefix, a given and family name,
-     *      another 'firstname' for the middle name and an optional suffix such as Jr. 
+     *      another 'firstname' for the middle name and an optional suffix such as Jr.
      *      Examples:
      *      <ul>
      *          <li>Mrs. Ella Geraldine Fitzgerald</li>
@@ -43,15 +43,15 @@ public class Name {
      * @return a random name with a middle name component with optional prefix and suffix
      */
     public String nameWithMiddle() {
-        return faker.fakeValuesService().resolve("name.name_with_middle", this, faker);
+        return this.faker.fakeValuesService().resolve("name.name_with_middle", this, this.faker);
     }
 
     /**
      * <p>Returns the same value as {@link #name()}</p>
-     * @see Name#name() 
+     * @see Name#name()
      */
     public String fullName() {
-        return name();
+        return this.name();
     }
 
     /**
@@ -59,7 +59,7 @@ public class Name {
      * @return a 'given' name such as Aaliyah, Aaron, Abagail or Abbey
      */
     public String firstName() {
-        return faker.fakeValuesService().resolve("name.first_name", this, faker);
+        return this.faker.fakeValuesService().resolve("name.first_name", this, this.faker);
     }
 
     /**
@@ -67,7 +67,7 @@ public class Name {
      * @return a random last name such as Smith, Jones or Baldwin
      */
     public String lastName() {
-        return faker.fakeValuesService().resolve("name.last_name", this, faker);
+        return this.faker.fakeValuesService().resolve("name.last_name", this, this.faker);
     }
 
     /**
@@ -75,7 +75,7 @@ public class Name {
      * @return a name prefix such as Mr., Mrs., Ms., Miss, or Dr.
      */
     public String prefix() {
-        return faker.fakeValuesService().resolve("name.prefix", this, faker);
+        return this.faker.fakeValuesService().resolve("name.prefix", this, this.faker);
     }
 
     /**
@@ -83,7 +83,7 @@ public class Name {
      * @return a name suffix such as Jr., Sr., I, II, III, IV, V, MD, DDS, PhD or DVM
      */
     public String suffix() {
-        return faker.fakeValuesService().resolve("name.suffix", this, faker);
+        return this.faker.fakeValuesService().resolve("name.suffix", this, this.faker);
     }
 
     /**
@@ -100,9 +100,9 @@ public class Name {
      */
     public String title() {
         return StringUtils.join(new String[] {
-            faker.fakeValuesService().resolve("name.title.descriptor", this, faker), 
-            faker.fakeValuesService().resolve("name.title.level", this, faker), 
-            faker.fakeValuesService().resolve("name.title.job", this, faker) }, " ");
+            this.faker.fakeValuesService().resolve("name.title.descriptor", this, this.faker),
+            this.faker.fakeValuesService().resolve("name.title.level", this, this.faker),
+            this.faker.fakeValuesService().resolve("name.title.job", this, this.faker) }, " ");
     }
 
     /**
@@ -116,25 +116,25 @@ public class Name {
      *     </ul>
      * </p>
      * @return a random two part user name.
-     * @see Name#firstName() 
+     * @see Name#firstName()
      * @see Name#lastName()
      */
     public String username() {
 
-        String username = StringUtils.join(
-                firstName().replaceAll("'", "").toLowerCase(),
-                ".",
-                lastName().replaceAll("'", "").toLowerCase()
-        );
+        var username = StringUtils.join(
+            this.firstName().replace("'", "").toLowerCase(),
+            ".",
+            this.lastName().replace("'", "").toLowerCase()
+                );
 
         return StringUtils.deleteWhitespace(username);
     }
-    
+
     /**
      * <p>Returns a blood group such as O−, O+, A-, A+, B-, B+, AB-, AB+</p>
      * @return a blood group such as O−, O+, A-, A+, B-, B+, AB-, AB+
      */
     public String bloodGroup() {
-        return faker.fakeValuesService().resolve("name.blood_group", this, faker);
+        return this.faker.fakeValuesService().resolve("name.blood_group", this, this.faker);
     }
 }

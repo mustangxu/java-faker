@@ -8,6 +8,6 @@ public class Matz {
     }
 
     public String quote() {
-        return faker.resolve("matz.quotes");
+        return this.faker.resolve("matz.quotes");
     }
 }

@@ -9,34 +9,34 @@ public class Dog {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("creature.dog.name", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.dog.name", this, this.faker);
     }
 
     public String breed() {
-        return faker.fakeValuesService().resolve("creature.dog.breed", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.dog.breed", this, this.faker);
     }
 
     public String sound() {
-        return faker.fakeValuesService().resolve("creature.dog.sound", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.dog.sound", this, this.faker);
     }
 
     public String memePhrase() {
-        return faker.fakeValuesService().resolve("creature.dog.meme_phrase", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.dog.meme_phrase", this, this.faker);
     }
 
     public String age() {
-        return faker.fakeValuesService().resolve("creature.dog.age", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.dog.age", this, this.faker);
     }
 
     public String coatLength() {
-        return faker.fakeValuesService().resolve("creature.dog.coat_length", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.dog.coat_length", this, this.faker);
     }
 
     public String gender() {
-        return faker.fakeValuesService().resolve("creature.dog.gender", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.dog.gender", this, this.faker);
     }
 
     public String size() {
-        return faker.fakeValuesService().resolve("creature.dog.size", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.dog.size", this, this.faker);
     }
 }

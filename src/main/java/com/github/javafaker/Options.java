@@ -17,7 +17,7 @@ public class Options {
      * @return A randomly selected element from the varargs.
      */
     public <E> E option(E... options) {
-        return options[faker.random().nextInt(options.length)];
+        return options[this.faker.random().nextInt(options.length)];
     }
 
     /**
@@ -28,7 +28,7 @@ public class Options {
      */
     public <E extends Enum<E>> E option(Class<E> enumeration) {
         E[] enumConstants = enumeration.getEnumConstants();
-        return enumConstants[faker.random().nextInt(enumConstants.length)];
+        return enumConstants[this.faker.random().nextInt(enumConstants.length)];
     }
 
     /**
@@ -39,7 +39,7 @@ public class Options {
      * @return A randomly selected element from the array.
      */
     public <E> E nextElement(E[] array) {
-        return array[faker.random().nextInt(array.length)];
+        return array[this.faker.random().nextInt(array.length)];
     }
 
     /**
@@ -50,6 +50,6 @@ public class Options {
      * @return A randomly selected element from the list.
      */
     public <E> E nextElement(List<E> list) {
-        return list.get(faker.random().nextInt(list.size()));
+        return list.get(this.faker.random().nextInt(list.size()));
     }
 }

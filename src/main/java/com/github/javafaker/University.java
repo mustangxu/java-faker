@@ -8,14 +8,14 @@ public class University {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("university.name", this, faker);
+        return this.faker.fakeValuesService().resolve("university.name", this, this.faker);
     }
 
     public String prefix() {
-        return faker.fakeValuesService().resolve("university.prefix", this, faker);
+        return this.faker.fakeValuesService().resolve("university.prefix", this, this.faker);
     }
 
     public String suffix() {
-        return faker.fakeValuesService().resolve("university.suffix", this, faker);
+        return this.faker.fakeValuesService().resolve("university.suffix", this, this.faker);
     }
 }

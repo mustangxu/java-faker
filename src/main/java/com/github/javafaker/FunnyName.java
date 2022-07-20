@@ -8,6 +8,6 @@ public class FunnyName {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("funny_name.name", this, faker);
+        return this.faker.fakeValuesService().resolve("funny_name.name", this, this.faker);
     }
 }

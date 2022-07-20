@@ -9,18 +9,18 @@ public class Ancient {
     }
 
     public String god() {
-        return faker.resolve("ancient.god");
+        return this.faker.resolve("ancient.god");
     }
 
     public String primordial() {
-        return faker.resolve("ancient.primordial");
+        return this.faker.resolve("ancient.primordial");
     }
 
     public String titan() {
-        return faker.resolve("ancient.titan");
+        return this.faker.resolve("ancient.titan");
     }
 
     public String hero() {
-        return faker.resolve("ancient.hero");
+        return this.faker.resolve("ancient.hero");
     }
 }

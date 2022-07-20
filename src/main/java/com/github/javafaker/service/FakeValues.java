@@ -1,26 +1,26 @@
 package com.github.javafaker.service;
 
-import org.yaml.snakeyaml.Yaml;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Stream;
+
+import org.yaml.snakeyaml.Yaml;
 
 public class FakeValues implements FakeValuesInterface {
     private final Locale locale;
     private final String filename;
     private final String path;
-    private Map values;
+    private Map<String, Map<String, ?>> values;
 
     FakeValues(Locale locale) {
         this(locale, getFilename(locale), getFilename(locale));
     }
 
     private static String getFilename(Locale locale) {
-        final StringBuilder filename = new StringBuilder(language(locale));
+        final var filename = new StringBuilder(language(locale));
         if (!"".equals(locale.getCountry())) {
             filename.append("-").append(locale.getCountry());
         }
@@ -32,7 +32,7 @@ public class FakeValues implements FakeValuesInterface {
      * This addresses that unfortunate condition.
      */
     private static String language(Locale l) {
-        if (l.getLanguage().equals("iw")) {
+        if ("iw".equals(l.getLanguage())) {
             return "he";
         }
         return l.getLanguage();
@@ -45,51 +45,48 @@ public class FakeValues implements FakeValuesInterface {
     }
 
     @Override
-    public Map get(String key) {
-        if (values == null) {
-            values = loadValues();
+    public Map<String, ?> get(String key) {
+        if (this.values == null) {
+            this.values = this.loadValues();
         }
 
-        return values == null ? null : (Map) values.get(key);
+        return this.values == null ? null
+            : (Map<String, ?>) this.values.get(key);
     }
 
-    private Map loadValues() {
-        String pathWithLocaleAndFilename = "/" + locale.getLanguage() + "/" + this.filename;
-        String pathWithFilename = "/" + filename + ".yml";
-        String pathWithLocale = "/" + locale.getLanguage() + ".yml";
+    private Map<String, Map<String, ?>> loadValues() {
+        var pathWithLocaleAndFilename = "/" + this.locale.getLanguage() + "/" + this.filename;
+        var pathWithFilename = "/" + this.filename + ".yml";
+        var pathWithLocale = "/" + this.locale.getLanguage() + ".yml";
 
-        List<String> paths = Arrays.asList(pathWithLocaleAndFilename, pathWithFilename, pathWithLocale);
-        InputStream stream = null;
-        for (String path : paths) {
-            stream = findStream(path);
-            if (stream != null) {
-                break;
+        var op = Stream
+                .of(pathWithLocaleAndFilename, pathWithFilename, pathWithLocale)
+                .map(this::findStream).filter(Objects::nonNull).findFirst();
+
+        if (op.isEmpty()) {
+            return null;
+        }
+
+        try (var stream = op.get();) {
+            final Map<String, Map<String, Map<String, Map<String, ?>>>> valuesMap = new Yaml()
+                    .loadAs(stream, Map.class);
+            var localeBased = valuesMap.get(this.locale.getLanguage());
+            if (localeBased == null) {
+                localeBased = valuesMap.get(this.filename);
             }
-        }
 
-        if (stream == null) {
+            return localeBased.get("faker");
+        }catch (IOException ex){
             return null;
         }
-
-        final Map valuesMap = new Yaml().loadAs(stream, Map.class);
-        Map localeBased = (Map) valuesMap.get(locale.getLanguage());
-        if (localeBased == null) {
-            localeBased = (Map) valuesMap.get(filename);
-        }
-        try {
-            stream.close();
-        } catch (IOException ex){
-            return null;
-        }
-        return (Map) localeBased.get("faker");
     }
 
     private InputStream findStream(String filename) {
-        InputStream streamOnClass = getClass().getResourceAsStream(filename);
+        var streamOnClass = this.getClass().getResourceAsStream(filename);
         if (streamOnClass != null) {
             return streamOnClass;
         }
-        return getClass().getClassLoader().getResourceAsStream(filename);
+        return this.getClass().getClassLoader().getResourceAsStream(filename);
     }
 
     boolean supportsPath(String path) {

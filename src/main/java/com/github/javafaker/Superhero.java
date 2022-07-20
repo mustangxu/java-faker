@@ -8,22 +8,22 @@ public class Superhero {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("superhero.name", this, faker);
+        return this.faker.fakeValuesService().resolve("superhero.name", this, this.faker);
     }
 
     public String prefix() {
-        return faker.fakeValuesService().resolve("superhero.prefix", this, faker);
+        return this.faker.fakeValuesService().resolve("superhero.prefix", this, this.faker);
     }
 
     public String suffix() {
-        return faker.fakeValuesService().resolve("superhero.suffix", this, faker);
+        return this.faker.fakeValuesService().resolve("superhero.suffix", this, this.faker);
     }
 
     public String power() {
-        return faker.fakeValuesService().resolve("superhero.power", this, faker);
+        return this.faker.fakeValuesService().resolve("superhero.power", this, this.faker);
     }
 
     public String descriptor() {
-        return faker.fakeValuesService().resolve("superhero.descriptor", this, faker);
+        return this.faker.fakeValuesService().resolve("superhero.descriptor", this, this.faker);
     }
 }

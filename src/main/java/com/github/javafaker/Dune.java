@@ -9,31 +9,31 @@ public class Dune {
     }
 
     public String character() {
-        return faker.fakeValuesService().resolve("dune.characters", this, faker);
+        return this.faker.fakeValuesService().resolve("dune.characters", this, this.faker);
     }
 
     public String title() {
-        return faker.fakeValuesService().resolve("dune.titles", this, faker);
+        return this.faker.fakeValuesService().resolve("dune.titles", this, this.faker);
     }
 
     public String planet() {
-        return faker.fakeValuesService().resolve("dune.planets", this, faker);
+        return this.faker.fakeValuesService().resolve("dune.planets", this, this.faker);
     }
 
     public String quote() {
-        return quote(faker.options().option(Dune.Quote.class));
+        return quote(this.faker.options().option(Dune.Quote.class));
     }
 
     public String quote(Quote quote) {
-        return faker.fakeValuesService().resolve("dune.quotes." + quote.yamlKey, this, faker);
+        return this.faker.fakeValuesService().resolve("dune.quotes." + quote.yamlKey, this, this.faker);
     }
 
     public String saying() {
-        return saying(faker.options().option(Dune.Saying.class));
+        return saying(this.faker.options().option(Dune.Saying.class));
     }
 
     public String saying(Saying saying) {
-        return faker.fakeValuesService().resolve("dune.sayings." + saying.yamlKey, this, faker);
+        return this.faker.fakeValuesService().resolve("dune.sayings." + saying.yamlKey, this, this.faker);
     }
 
     public enum Quote {

@@ -8,22 +8,22 @@ public class Esports {
     }
 
     public String player() {
-        return faker.resolve("esport.players");
+        return this.faker.resolve("esport.players");
     }
 
     public String team() {
-        return faker.resolve("esport.teams");
+        return this.faker.resolve("esport.teams");
     }
 
     public String event() {
-        return faker.resolve("esport.events");
+        return this.faker.resolve("esport.events");
     }
 
     public String league() {
-        return faker.resolve("esport.leagues");
+        return this.faker.resolve("esport.leagues");
     }
 
     public String game() {
-        return faker.resolve("esport.games");
+        return this.faker.resolve("esport.games");
     }
 }

@@ -79,7 +79,7 @@ public class Shakespeare {
     }
 
     private String randomElement(String[] values) {
-        return values[faker.random().nextInt(values.length)];
+        return values[this.faker.random().nextInt(values.length)];
     }
 
 }

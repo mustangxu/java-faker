@@ -9,10 +9,10 @@ public class Currency {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("currency.name", this, faker);
+        return this.faker.fakeValuesService().resolve("currency.name", this, this.faker);
     }
 
     public String code() {
-        return faker.fakeValuesService().resolve("currency.code", this, faker);
+        return this.faker.fakeValuesService().resolve("currency.code", this, this.faker);
     }
 }

@@ -21,7 +21,7 @@ public class BojackHorseman {
      * @return Characters in BojackHorseman
      */
     public String characters() {
-        return faker.fakeValuesService().resolve("bojack_horseman.characters", this, faker);
+        return this.faker.fakeValuesService().resolve("bojack_horseman.characters", this, this.faker);
     }
 
     /**
@@ -29,7 +29,7 @@ public class BojackHorseman {
      * @return Quotes in BojackHorseman
      */
     public String quotes() {
-        return faker.fakeValuesService().resolve("bojack_horseman.quotes", this, faker);
+        return this.faker.fakeValuesService().resolve("bojack_horseman.quotes", this, this.faker);
     }
 
     /**
@@ -37,7 +37,7 @@ public class BojackHorseman {
      * @return Tongue twisters in BojackHorseman
      */
     public String tongueTwisters() {
-        return faker.fakeValuesService().resolve("bojack_horseman.tongue_twisters", this, faker);
+        return this.faker.fakeValuesService().resolve("bojack_horseman.tongue_twisters", this, this.faker);
     }
 
 }

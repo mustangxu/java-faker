@@ -8,6 +8,6 @@ public class Animal {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("creature.animal.name", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.animal.name", this, this.faker);
     }
 }

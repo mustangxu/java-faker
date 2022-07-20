@@ -13,18 +13,18 @@ public class Music {
     }
 
     public String instrument() {
-        return faker.resolve("music.instruments");
+        return this.faker.resolve("music.instruments");
     }
 
     public String key() {
-        return faker.options().option(KEYS) + faker.options().option(KEY_VARIANTS);
+        return this.faker.options().option(KEYS) + this.faker.options().option(KEY_VARIANTS);
     }
 
     public String chord() {
-        return key() + faker.options().option(CHORD_TYPES);
+        return key() + this.faker.options().option(CHORD_TYPES);
     }
 
     public String genre() {
-        return faker.resolve("music.genres");
+        return this.faker.resolve("music.genres");
     }
 }

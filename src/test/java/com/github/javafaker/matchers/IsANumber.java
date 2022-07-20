@@ -21,7 +21,7 @@ public class IsANumber extends TypeSafeMatcher<String> {
         description.appendText("is a number");
     }
 
-    public static <T> Matcher<String> isANumber() {
+    public static Matcher<String> isANumber() {
         return new IsANumber();
     }
 }

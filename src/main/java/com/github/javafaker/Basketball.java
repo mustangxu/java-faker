@@ -20,7 +20,7 @@ public class Basketball {
      * @return Basketball teams
      */
     public String teams() {
-        return faker.fakeValuesService().resolve("basketball.teams", this, faker);
+        return this.faker.fakeValuesService().resolve("basketball.teams", this, this.faker);
     }
 
     /**
@@ -28,15 +28,16 @@ public class Basketball {
      * @return Basketball coaches
      */
     public String coaches() {
-        return faker.fakeValuesService().resolve("basketball.coaches", this, faker);
+        return this.faker.fakeValuesService().resolve("basketball.coaches", this, this.faker);
     }
 
     /**
      * Generate random positions in basketball game
+     *
      * @return Basketball positions
      */
     public String positions() {
-        return faker.fakeValuesService().resolve("basketball.positions", this, faker);
+        return this.faker.fakeValuesService().resolve("basketball.positions", this, this.faker);
     }
 
     /**
@@ -44,6 +45,6 @@ public class Basketball {
      * @return Basketball players
      */
     public String players() {
-        return faker.fakeValuesService().resolve("basketball.players", this, faker);
+        return this.faker.fakeValuesService().resolve("basketball.players", this, this.faker);
     }
 }

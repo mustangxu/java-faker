@@ -8,18 +8,18 @@ public class Team {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("team.name", this, faker);
+        return this.faker.fakeValuesService().resolve("team.name", this, this.faker);
     }
 
     public String creature() {
-        return faker.fakeValuesService().resolve("team.creature", this, faker);
+        return this.faker.fakeValuesService().resolve("team.creature", this, this.faker);
     }
 
     public String state() {
-        return faker.fakeValuesService().resolve("address.state", this, faker);
+        return this.faker.fakeValuesService().resolve("address.state", this, this.faker);
     }
 
     public String sport() {
-        return faker.fakeValuesService().resolve("team.sport", this, faker);
+        return this.faker.fakeValuesService().resolve("team.sport", this, this.faker);
     }
 }

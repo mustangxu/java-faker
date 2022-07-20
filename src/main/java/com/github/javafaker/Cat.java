@@ -9,14 +9,14 @@ public class Cat {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("creature.cat.name", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.cat.name", this, this.faker);
     }
 
     public String breed() {
-        return faker.fakeValuesService().resolve("creature.cat.breed", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.cat.breed", this, this.faker);
     }
 
     public String registry() {
-        return faker.fakeValuesService().resolve("creature.cat.registry", this, faker);
+        return this.faker.fakeValuesService().resolve("creature.cat.registry", this, this.faker);
     }
 }

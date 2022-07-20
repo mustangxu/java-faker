@@ -8,6 +8,6 @@ public class DragonBall {
     }
 
     public String character() {
-        return faker.fakeValuesService().resolve("dragon_ball.characters", this, faker);
+        return this.faker.fakeValuesService().resolve("dragon_ball.characters", this, this.faker);
     }
 }

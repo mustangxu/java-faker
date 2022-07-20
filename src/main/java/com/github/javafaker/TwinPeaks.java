@@ -8,14 +8,14 @@ public class TwinPeaks {
     }
 
     public String character() {
-        return faker.resolve("twin_peaks.characters");
+        return this.faker.resolve("twin_peaks.characters");
     }
 
     public String location() {
-        return faker.resolve("twin_peaks.locations");
+        return this.faker.resolve("twin_peaks.locations");
     }
 
     public String quote() {
-        return faker.resolve("twin_peaks.quotes");
+        return this.faker.resolve("twin_peaks.quotes");
     }
 }

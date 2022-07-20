@@ -12,26 +12,26 @@ public class IsStringWithContentsTest {
 
     @Before
     public void before() {
-        matcher = new IsStringWithContents();
+        this.matcher = new IsStringWithContents();
     }
 
     @Test
     public void emptyStringShouldFail() {
-        assertThat(matcher.matchesSafely(""), is(false));
+        assertThat(this.matcher.matchesSafely(""), is(false));
     }
 
     @Test
     public void nullStringShouldFail() {
-        assertThat(matcher.matchesSafely(null), is(false));
+        assertThat(this.matcher.matchesSafely(null), is(false));
     }
 
     @Test
     public void stringShouldPass() {
-        assertThat(matcher.matchesSafely("123"), is(true));
+        assertThat(this.matcher.matchesSafely("123"), is(true));
     }
 
     @Test
     public void whiteSpaceShouldFail() {
-        assertThat(matcher.matchesSafely("    "), is(false));
+        assertThat(this.matcher.matchesSafely("    "), is(false));
     }
 }

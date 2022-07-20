@@ -9,22 +9,22 @@ public class Job {
     }
 
     public String field() {
-        return faker.fakeValuesService().resolve("job.field", this, faker);
+        return this.faker.fakeValuesService().resolve("job.field", this, this.faker);
     }
 
     public String seniority() {
-        return faker.fakeValuesService().resolve("job.seniority", this, faker);
+        return this.faker.fakeValuesService().resolve("job.seniority", this, this.faker);
     }
 
     public String position() {
-        return faker.fakeValuesService().resolve("job.position", this, faker);
+        return this.faker.fakeValuesService().resolve("job.position", this, this.faker);
     }
 
     public String keySkills() {
-        return faker.fakeValuesService().resolve("job.key_skills", this, faker);
+        return this.faker.fakeValuesService().resolve("job.key_skills", this, this.faker);
     }
 
     public String title() {
-        return faker.fakeValuesService().resolve("job.title", this, faker);
+        return this.faker.fakeValuesService().resolve("job.title", this, this.faker);
     }
 }

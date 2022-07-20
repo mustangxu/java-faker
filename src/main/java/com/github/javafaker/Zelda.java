@@ -8,10 +8,10 @@ public class Zelda {
     }
 
     public String game() {
-        return faker.resolve("games.zelda.games");
+        return this.faker.resolve("games.zelda.games");
     }
 
     public String character() {
-        return faker.resolve("games.zelda.characters");
+        return this.faker.resolve("games.zelda.characters");
     }
 }

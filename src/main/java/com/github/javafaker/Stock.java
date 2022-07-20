@@ -9,11 +9,11 @@ public class Stock {
 	}
 
 	public String nsdqSymbol() {
-		return faker.fakeValuesService().resolve("stock.symbol_nsdq", this, faker);
+		return this.faker.fakeValuesService().resolve("stock.symbol_nsdq", this, this.faker);
 	}
 	
 	public String nyseSymbol() {
-		return faker.fakeValuesService().resolve("stock.symbol_nyse", this, faker);
+		return this.faker.fakeValuesService().resolve("stock.symbol_nyse", this, this.faker);
 	}
 	
 }

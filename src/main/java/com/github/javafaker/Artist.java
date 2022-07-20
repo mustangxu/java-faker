@@ -9,6 +9,6 @@ public class Artist {
     }
 
     public String name() {
-        return faker.fakeValuesService().fetchString("artist.names");
+        return this.faker.fakeValuesService().fetchString("artist.names");
     }
 }

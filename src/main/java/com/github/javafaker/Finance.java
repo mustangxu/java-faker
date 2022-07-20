@@ -1,12 +1,12 @@
 package com.github.javafaker;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class Finance {
     private final Faker faker;
@@ -20,49 +20,49 @@ public class Finance {
             createCountryCodeToBasicBankAccountNumberPatternMap();
 
     public String creditCard(CreditCardType creditCardType) {
-        final String key = String.format("finance.credit_card.%s", creditCardType.toString().toLowerCase());
-        String value = faker.fakeValuesService().resolve(key, this, faker);
-        final String template = faker.numerify(value);
+        final var key = String.format("finance.credit_card.%s", creditCardType.toString().toLowerCase());
+        var value = this.faker.fakeValuesService().resolve(key, this, this.faker);
+        final var template = this.faker.numerify(value);
 
-        String[] split = template.replaceAll("[^0-9]", "").split("");
-        List<Integer> reversedAsInt = new ArrayList<Integer>();
-        for (int i = 0; i < split.length; i++) {
-            final String current = split[split.length - 1 - i];
+        var split = template.replaceAll("[^0-9]", "").split("");
+        List<Integer> reversedAsInt = new ArrayList<>();
+        for (var i = 0; i < split.length; i++) {
+            final var current = split[split.length - 1 - i];
             if (!current.isEmpty()) {
                 reversedAsInt.add(Integer.valueOf(current));
             }
         }
-        int luhnSum = 0;
-        int multiplier = 1;
+        var luhnSum = 0;
+        var multiplier = 1;
         for (Integer digit : reversedAsInt) {
-            multiplier = (multiplier == 2 ? 1 : 2);
+            multiplier = multiplier == 2 ? 1 : 2;
             luhnSum += sum(String.valueOf(digit * multiplier).split(""));
         }
-        int luhnDigit = (10 - (luhnSum % 10)) % 10;
+        var luhnDigit = (10 - luhnSum % 10) % 10;
         return template.replace('\\', ' ').replace('/', ' ').trim().replace('L', String.valueOf(luhnDigit).charAt(0));
     }
 
     public String creditCard() {
-        CreditCardType type = randomCreditCardType();
-        return creditCard(type);
+        var type = this.randomCreditCardType();
+        return this.creditCard(type);
     }
 
     /**
      * Generates a random Business Identifier Code
      */
     public String bic() {
-        return faker.regexify("([A-Z]){4}([A-Z]){2}([0-9A-Z]){2}([0-9A-Z]{3})?");
+        return this.faker.regexify("([A-Z]){4}([A-Z]){2}([0-9A-Z]){2}([0-9A-Z]{3})?");
     }
 
     public String iban() {
-        List<String> countryCodes = new ArrayList<String>(countryCodeToBasicBankAccountNumberPattern.keySet());
-        String randomCountryCode = countryCodes.get(faker.random().nextInt(countryCodes.size()));
-        return iban(randomCountryCode);
+        List<String> countryCodes = new ArrayList<>(countryCodeToBasicBankAccountNumberPattern.keySet());
+        var randomCountryCode = countryCodes.get(this.faker.random().nextInt(countryCodes.size()));
+        return this.iban(randomCountryCode);
     }
 
     public String iban(String countryCode) {
-        String basicBankAccountNumber = faker.regexify(countryCodeToBasicBankAccountNumberPattern.get(countryCode));
-        String checkSum = calculateIbanChecksum(countryCode, basicBankAccountNumber);
+        var basicBankAccountNumber = this.faker.regexify(countryCodeToBasicBankAccountNumberPattern.get(countryCode));
+        var checkSum = calculateIbanChecksum(countryCode, basicBankAccountNumber);
         return countryCode + checkSum + basicBankAccountNumber;
     }
 
@@ -71,35 +71,35 @@ public class Finance {
     }
 
     private static int sum(String[] string) {
-        int sum = 0;
+        var sum = 0;
         for (String s : string) {
             if (!s.isEmpty()) {
-                sum += Integer.valueOf(s);
+                sum += Integer.parseInt(s);
             }
         }
         return sum;
     }
 
     private static String calculateIbanChecksum(String countryCode, String basicBankAccountNumber) {
-        String basis = basicBankAccountNumber + countryCode + "00";
+        var basis = basicBankAccountNumber + countryCode + "00";
 
-        StringBuilder sb = new StringBuilder();
-        char[] characters = basis.toLowerCase().toCharArray();
+        var sb = new StringBuilder();
+        var characters = basis.toLowerCase().toCharArray();
         for (char c : characters) {
             if (Character.isLetter(c)) {
-                sb.append(String.valueOf((c - 'a') + 10));
+                sb.append(String.valueOf(c - 'a' + 10));
             } else {
                 sb.append(c);
             }
         }
 
-        int mod97 = new BigInteger(sb.toString()).mod(BigInteger.valueOf(97L)).intValue();
+        var mod97 = new BigInteger(sb.toString()).mod(BigInteger.valueOf(97L)).intValue();
         return StringUtils.leftPad(String.valueOf(98 - mod97), 2, '0');
     }
 
     private static Map<String, String> createCountryCodeToBasicBankAccountNumberPatternMap() {
         // source: https://www.swift.com/standards/data-standards/iban
-        Map<String, String> ibanFormats = new HashMap<String, String>();
+        Map<String, String> ibanFormats = new HashMap<>();
         ibanFormats.put("AL", "\\d{8}[0-9A-Za-z]{16}");
         ibanFormats.put("AD", "\\d{4}\\d{4}[0-9A-Za-z]{12}");
         ibanFormats.put("AT", "\\d{5}\\d{11}");

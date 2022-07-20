@@ -8,30 +8,30 @@ public class HitchhikersGuideToTheGalaxy {
     }
 
     public String character() {
-        return faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.characters", this, faker);
+        return this.faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.characters", this, this.faker);
     }
 
     public String location() {
-        return faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.locations", this, faker);
+        return this.faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.locations", this, this.faker);
     }
 
     public String marvinQuote() {
-        return faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.marvin_quote", this, faker);
+        return this.faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.marvin_quote", this, this.faker);
     }
 
     public String planet() {
-        return faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.planets", this, faker);
+        return this.faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.planets", this, this.faker);
     }
 
     public String quote() {
-        return faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.quotes", this, faker);
+        return this.faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.quotes", this, this.faker);
     }
 
     public String specie() {
-        return faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.species", this, faker);
+        return this.faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.species", this, this.faker);
     }
 
     public String starship() {
-        return faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.starships", this, faker);
+        return this.faker.fakeValuesService().resolve("hitchhikers_guide_to_the_galaxy.starships", this, this.faker);
     }
 }

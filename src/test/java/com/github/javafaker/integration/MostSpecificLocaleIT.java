@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * The purpose of these tests is to ensure that the Locales have been properly configured
@@ -22,15 +22,15 @@ public class MostSpecificLocaleIT {
 
     @Before
     public void setupFakers() {
-        en = new FakeValuesService(new Locale("en"), null);
-        en_US = new FakeValuesService(new Locale("en","US"), null);
+        this.en = new FakeValuesService(new Locale("en"), null);
+        this.en_US = new FakeValuesService(new Locale("en","US"), null);
     }
 
     @Test
     @SuppressWarnings("unchecked")
     public void resolvesTheMostSpecificLocale() {
-        final List<String> enDefaultCountries = (List<String>) en.fetchObject("address.default_country");
-        final List<String> enUsDefaultCountries = (List<String>) en_US.fetchObject("address.default_country");
+        final List<String> enDefaultCountries = (List<String>) this.en.fetchObject("address.default_country");
+        final List<String> enUsDefaultCountries = (List<String>) this.en_US.fetchObject("address.default_country");
         
         assertThat(enDefaultCountries, hasSize(1));
         assertThat(enUsDefaultCountries, hasSize(3));

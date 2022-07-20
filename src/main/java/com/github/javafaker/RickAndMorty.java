@@ -8,14 +8,14 @@ public class RickAndMorty  {
     }
 
     public String character() {
-        return faker.resolve("rick_and_morty.characters");
+        return this.faker.resolve("rick_and_morty.characters");
     }
 
     public String location() {
-        return faker.resolve("rick_and_morty.locations");
+        return this.faker.resolve("rick_and_morty.locations");
     }
 
     public String quote() {
-        return faker.resolve("rick_and_morty.quotes");
+        return this.faker.resolve("rick_and_morty.quotes");
     }
 }

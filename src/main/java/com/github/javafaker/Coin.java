@@ -12,6 +12,6 @@ public class Coin {
      * @return coin side e.g. "Heads", "Tails".
      */
     public String flip() {
-        return faker.fakeValuesService().resolve("coin.flip", this, faker);
+        return this.faker.fakeValuesService().resolve("coin.flip", this, this.faker);
     }
 }

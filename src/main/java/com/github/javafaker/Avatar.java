@@ -10,6 +10,6 @@ public class Avatar {
     }
 
     public String image() {
-        return baseUrl + faker.fakeValuesService().resolve("internet.avatar", this, faker);
+        return this.baseUrl + this.faker.fakeValuesService().resolve("internet.avatar", this, this.faker);
     }
 }

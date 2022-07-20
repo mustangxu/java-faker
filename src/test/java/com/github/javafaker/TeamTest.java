@@ -6,23 +6,23 @@ import java.util.Locale;
 
 import static com.github.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TeamTest extends AbstractFakerTest {
 
     @Test
     public void testName() {
-        assertThat(faker.team().name(), matchesRegularExpression("(\\w+( )?){2,4}"));
+        assertThat(this.faker.team().name(), matchesRegularExpression("(\\w+( )?){2,4}"));
     }
 
     @Test
     public void testCreature() {
-        assertThat(faker.team().creature(), matchesRegularExpression("\\w+( \\w+)?"));
+        assertThat(this.faker.team().creature(), matchesRegularExpression("\\w+( \\w+)?"));
     }
 
     @Test
     public void testState() {
-        assertThat(faker.team().state(), matchesRegularExpression("(\\w+( )?){1,2}"));
+        assertThat(this.faker.team().state(), matchesRegularExpression("(\\w+( )?){1,2}"));
     }
 
 
@@ -33,7 +33,7 @@ public class TeamTest extends AbstractFakerTest {
     }
     @Test
     public void testSport() {
-        assertThat(faker.team().sport(), matchesRegularExpression("(\\p{L}|\\s)+"));
+        assertThat(this.faker.team().sport(), matchesRegularExpression("(\\p{L}|\\s)+"));
     }
 
 

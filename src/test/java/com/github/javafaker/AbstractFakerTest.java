@@ -1,15 +1,15 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.RepeatRule;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
+import com.github.javafaker.repeating.RepeatRule;
 
 public class AbstractFakerTest {
 
@@ -20,11 +20,12 @@ public class AbstractFakerTest {
     protected Faker faker;
 
     @Before
-    public void before() {
-        MockitoAnnotations.initMocks(this);
-        
-        Logger rootLogger = LogManager.getLogManager().getLogger("");
-        Handler[] handlers = rootLogger.getHandlers();
+    public void before() throws Exception {
+        try (var m = MockitoAnnotations.openMocks(this);) {
+        }
+
+        var rootLogger = LogManager.getLogManager().getLogger("");
+        var handlers = rootLogger.getHandlers();
         rootLogger.setLevel(Level.INFO);
         for (Handler h : handlers) {
             h.setLevel(Level.INFO);

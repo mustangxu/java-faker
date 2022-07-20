@@ -1,31 +1,32 @@
 package com.github.javafaker;
 
-import org.junit.Test;
-
-import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
+
+import org.junit.Test;
 
 public class ShakespeareTest  extends AbstractFakerTest{
 
     @Test
     public void testHamletQuote() {
-        assertThat(faker.shakespeare().hamletQuote(), not(isEmptyOrNullString()));
+        assertThat(this.faker.shakespeare().hamletQuote(), not(is(emptyOrNullString())));
     }
 
     @Test
     public void testAsYouLikeItQuote() {
-        assertThat(faker.shakespeare().asYouLikeItQuote(), not(isEmptyOrNullString()));
+        assertThat(this.faker.shakespeare().asYouLikeItQuote(), not(is(emptyOrNullString())));
     }
 
     @Test
     public void testKingRichardIIIQuote() {
-        assertThat(faker.shakespeare().kingRichardIIIQuote(), not(isEmptyOrNullString()));
+        assertThat(this.faker.shakespeare().kingRichardIIIQuote(), not(is(emptyOrNullString())));
     }
 
     @Test
     public void testRomeoAndJulietQuote() {
-        assertThat(faker.shakespeare().romeoAndJulietQuote(), not(isEmptyOrNullString()));
+        assertThat(this.faker.shakespeare().romeoAndJulietQuote(), not(is(emptyOrNullString())));
     }
 
 }

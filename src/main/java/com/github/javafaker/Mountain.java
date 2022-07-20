@@ -8,10 +8,10 @@ public class Mountain {
     }
 
     public String name() {
-        return faker.fakeValuesService().resolve("mountain.name", this, faker);
+        return this.faker.fakeValuesService().resolve("mountain.name", this, this.faker);
     }
 
     public String range() {
-        return faker.fakeValuesService().resolve("mountain.range", this, faker);
+        return this.faker.fakeValuesService().resolve("mountain.range", this, this.faker);
     }
 }

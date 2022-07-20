@@ -15,7 +15,7 @@ public class Aviation {
      * @return some aircraft name/model/make e.g. "An-2".
      */
     public String aircraft() {
-        return faker.fakeValuesService().fetchString("aviation.aircraft");
+        return this.faker.fakeValuesService().fetchString("aviation.aircraft");
     }
 
     /**
@@ -23,7 +23,7 @@ public class Aviation {
      * See also: https://en.wikipedia.org/wiki/List_of_airports_by_ICAO_code:_A
      */
     public String airport() {
-        return faker.fakeValuesService().fetchString("aviation.airport");
+        return this.faker.fakeValuesService().fetchString("aviation.airport");
     }
 
     /**
@@ -31,6 +31,6 @@ public class Aviation {
      * Have a look at https://en.wikipedia.org/wiki/METAR
      */
     public String METAR() {
-        return faker.fakeValuesService().fetchString("aviation.metar");
+        return this.faker.fakeValuesService().fetchString("aviation.metar");
     }
 }

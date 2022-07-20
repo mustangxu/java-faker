@@ -9,19 +9,19 @@ public class StarCraft {
     }
 
     public String unit() {
-        return faker.fakeValuesService().resolve("starcraft.units", this, faker);
+        return this.faker.fakeValuesService().resolve("starcraft.units", this, this.faker);
     }
 
     public String building() {
-        return faker.fakeValuesService().resolve("starcraft.buildings", this, faker);
+        return this.faker.fakeValuesService().resolve("starcraft.buildings", this, this.faker);
     }
 
     public String character() {
-        return faker.fakeValuesService().resolve("starcraft.characters", this, faker);
+        return this.faker.fakeValuesService().resolve("starcraft.characters", this, this.faker);
     }
 
     public String planet() {
-        return faker.fakeValuesService().resolve("starcraft.planets", this, faker);
+        return this.faker.fakeValuesService().resolve("starcraft.planets", this, this.faker);
     }
 
 }

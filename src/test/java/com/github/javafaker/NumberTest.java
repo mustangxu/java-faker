@@ -1,13 +1,8 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import org.apache.commons.lang3.tuple.Pair;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,9 +10,15 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicLong;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import org.apache.commons.lang3.tuple.Pair;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.javafaker.repeating.Repeat;
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 public class NumberTest extends AbstractFakerTest {
 
@@ -33,8 +34,8 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     public void testRandomDigit() {
         Set<Integer> nums = Sets.newHashSet();
-        for (int i = 0; i < 1000; ++i) {
-            int value = faker.number().randomDigit();
+        for (var i = 0; i < 1000; ++i) {
+            var value = this.faker.number().randomDigit();
             assertThat(value, is(lessThanOrEqualTo(9)));
             assertThat(value, is(greaterThanOrEqualTo(0)));
             nums.add(value);
@@ -45,8 +46,8 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     public void testRandomDigitNotZero() {
         Set<Integer> nums = Sets.newHashSet();
-        for (int i = 0; i < 1000; ++i) {
-            int value = faker.number().randomDigitNotZero();
+        for (var i = 0; i < 1000; ++i) {
+            var value = this.faker.number().randomDigitNotZero();
             assertThat(value, is(lessThanOrEqualTo(9)));
             assertThat(value, is(greaterThan(0)));
             nums.add(value);
@@ -56,14 +57,14 @@ public class NumberTest extends AbstractFakerTest {
 
     @Test
     public void testRandomNumber() {
-        long value = faker.number().randomNumber();
+        var value = this.faker.number().randomNumber();
         assertThat(value, is(lessThan(Long.MAX_VALUE)));
     }
 
     @Test
     public void testRandomNumberWithSingleDigitStrict() {
-        for (int i = 0; i < 100; ++i) {
-            long value = faker.number().randomNumber(1, true);
+        for (var i = 0; i < 100; ++i) {
+            var value = this.faker.number().randomNumber(1, true);
             assertThat(value, is(lessThan(10L)));
             assertThat(value, is(greaterThanOrEqualTo(0L)));
         }
@@ -71,18 +72,18 @@ public class NumberTest extends AbstractFakerTest {
 
     @Test
     public void testRandomNumberWithZeroDigitsStrict() {
-        for (int i = 0; i < 100; ++i) {
-            long value = faker.number().randomNumber(0, true);
+        for (var i = 0; i < 100; ++i) {
+            var value = this.faker.number().randomNumber(0, true);
             assertThat(value, is(0L));
         }
     }
 
     @Test
     public void testRandomNumberWithGivenDigitsStrict() {
-        for (int i = 1; i < 9; ++i) {
-            for (int x = 0; x < 100; ++x) {
-                long value = faker.number().randomNumber(i, true);
-                String stringValue = String.valueOf(value);
+        for (var i = 1; i < 9; ++i) {
+            for (var x = 0; x < 100; ++x) {
+                var value = this.faker.number().randomNumber(i, true);
+                var stringValue = String.valueOf(value);
                 assertThat(stringValue.length(), is(i));
             }
         }
@@ -90,12 +91,12 @@ public class NumberTest extends AbstractFakerTest {
 
     @Test
     public void testRandomDouble() {
-        for (int i = 1; i < 5; ++i) {
-            for (int x = 0; x < 100; ++x) {
-                double value = faker.number().randomDouble(i, 1, 1000);
-                String strVal = BigDecimal.valueOf(value).stripTrailingZeros().toString();
+        for (var i = 1; i < 5; ++i) {
+            for (var x = 0; x < 100; ++x) {
+                var value = this.faker.number().randomDouble(i, 1, 1000);
+                var strVal = BigDecimal.valueOf(value).stripTrailingZeros().toString();
                 if (strVal.contains(".") && !strVal.contains("+")) {
-                    int ind = strVal.indexOf(".");
+                    var ind = strVal.indexOf(".");
                     assertThat(strVal.length() - ind - 1, is(lessThanOrEqualTo(i)));
                 }
             }
@@ -104,20 +105,20 @@ public class NumberTest extends AbstractFakerTest {
 
     @Test
     public void testNumberBetween() {
-        for (int i = 1; i < 100; ++i) {
-            int v = faker.number().numberBetween(0, i);
+        for (var i = 1; i < 100; ++i) {
+            var v = this.faker.number().numberBetween(0, i);
             assertThat(v, is(lessThanOrEqualTo(i)));
             assertThat(v, is(greaterThanOrEqualTo(0)));
         }
 
-        for (long i = 1L; i < 100L; ++i) {
-            long v = faker.number().numberBetween(0, i);
+        for (var i = 1L; i < 100L; ++i) {
+            var v = this.faker.number().numberBetween(0, i);
             assertThat(v, is(lessThanOrEqualTo(i)));
             assertThat(v, is(greaterThanOrEqualTo(0L)));
         }
 
-        int min1 = 1;
-        long v1 = faker.number().numberBetween(min1, 980000000L);
+        var min1 = 1;
+        var v1 = this.faker.number().numberBetween(min1, 980000000L);
         assertThat(v1, is(greaterThan((long) min1)));
         assertThat(v1, is(lessThan(980000000L)));
     }
@@ -125,9 +126,9 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     @Repeat(times = 100)
     public void testLongNumberBetweenRepeated() {
-        long low = 1;
-        long high = 10;
-        long v = faker.number().numberBetween(low, high);
+        var low = 1L;
+        var high = 10L;
+        var v = this.faker.number().numberBetween(low, high);
         assertThat(v, is(lessThan(high)));
         assertThat(v, is(greaterThanOrEqualTo(low)));
     }
@@ -135,9 +136,9 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     @Repeat(times = 100)
     public void testIntNumberBetweenRepeated() {
-        int low = 1;
-        int high = 10;
-        int v = faker.number().numberBetween(low, high);
+        var low = 1;
+        var high = 10;
+        var v = this.faker.number().numberBetween(low, high);
         assertThat(v, is(lessThan(high)));
         assertThat(v, is(greaterThanOrEqualTo(low)));
     }
@@ -145,10 +146,10 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     public void testNumberBetweenOneAndThree() {
         Set<Integer> nums = Sets.newHashSet();
-        final int lowerLimit = 0;
-        final int upperLimit = 3;
-        for (int i = 0; i < 1000; ++i) {
-            int value = faker.number().numberBetween(lowerLimit, upperLimit);
+        final var lowerLimit = 0;
+        final var upperLimit = 3;
+        for (var i = 0; i < 1000; ++i) {
+            var value = this.faker.number().numberBetween(lowerLimit, upperLimit);
             assertThat(value, is(lessThan(upperLimit)));
             assertThat(value, is(greaterThanOrEqualTo(lowerLimit)));
             nums.add(value);
@@ -159,10 +160,10 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     public void testLongBetweenOneAndThree() {
         Set<Long> nums = Sets.newHashSet();
-        final long lowerLimit = 0;
-        final long upperLimit = 3;
-        for (int i = 0; i < 1000; ++i) {
-            long value = faker.number().numberBetween(lowerLimit, upperLimit);
+        final var lowerLimit = 0L;
+        final var upperLimit = 3L;
+        for (var i = 0; i < 1000; ++i) {
+            var value = this.faker.number().numberBetween(lowerLimit, upperLimit);
             assertThat(value, is(lessThan(upperLimit)));
             assertThat(value, is(greaterThanOrEqualTo(lowerLimit)));
             nums.add(value);
@@ -173,21 +174,21 @@ public class NumberTest extends AbstractFakerTest {
     @Test
     public void numberBetweenIntIntZeroMinMax() {
         assertThat("Calling numberBetween with min==max yields min, with 0",
-                faker.number().numberBetween(0, 0),
-                is(0));
+            this.faker.number().numberBetween(0, 0),
+            is(0));
         assertThat("Calling numberBetween with min==max yields min",
-                faker.number().numberBetween(2, 2),
-                is(2));
+            this.faker.number().numberBetween(2, 2),
+            is(2));
     }
 
     @Test
     public void numberBetweenLongLongZeroMinMax() {
         assertThat("Calling numberBetween with min==max yields min, with 0",
-                faker.number().numberBetween(0L, 0L),
-                is(0L));
-        assertThat("Calling numberBetween with min==max yields min", 
-                faker.number().numberBetween(2L, 2L),
-                is(2L));
+            this.faker.number().numberBetween(0L, 0L),
+            is(0L));
+        assertThat("Calling numberBetween with min==max yields min",
+            this.faker.number().numberBetween(2L, 2L),
+            is(2L));
     }
 
     /**
@@ -201,30 +202,22 @@ public class NumberTest extends AbstractFakerTest {
      */
     @Test
     public void randomDoubleRandomizationQuality() {
-        Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = new Function<Pair<Long, Long>, Double>() {
-            @Override
-            public Double apply(Pair<Long, Long> minMax) {
-                final int min = minMax.getLeft().intValue(), max = minMax.getRight().intValue();
-                long numbersToGet = calculateNumbersToGet(min, max);
+        Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = minMax -> {
+            final int min = minMax.getLeft().intValue(), max = minMax.getRight().intValue();
+            var numbersToGet = NumberTest.this.calculateNumbersToGet(min, max);
 
-                return uniquePercentageOfResults(numbersToGet, new Callable<Double>() {
-                    @Override
-                    public Double call() throws Exception {
-                        return faker.number().randomDouble(0, min, max);
-                    }
-                });
-            }
+            return NumberTest.this.uniquePercentageOfResults(numbersToGet, () -> NumberTest.this.faker.number().randomDouble(0, min, max));
         };
 
-        final double percentGreaterThan80Percent = randomizationQualityTest(individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
+        final var percentGreaterThan80Percent = this.randomizationQualityTest(this.individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
         assertThat("Percentage of runs > 80% unique is gte 90%",
-                percentGreaterThan80Percent, greaterThanOrEqualTo(percentRunsGtUniquePercentage));
+            percentGreaterThan80Percent, greaterThanOrEqualTo(this.percentRunsGtUniquePercentage));
 
         // this covers Issue # 121, the number of times the function is called with the MIN/MAX values here
         // is RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET
         final double extremeRunUniquePercent = minMaxRangeToUniquePercentageFunction.apply(Pair.of((long) Integer.MIN_VALUE, (long) Integer.MAX_VALUE));
         assertThat("Percentage of extreme runs > 80%",
-                extremeRunUniquePercent, greaterThanOrEqualTo(individualRunGtPercentUnique));
+            extremeRunUniquePercent, greaterThanOrEqualTo(this.individualRunGtPercentUnique));
     }
 
     /**
@@ -233,36 +226,28 @@ public class NumberTest extends AbstractFakerTest {
      *  calculate the uniqueness for that given min/max range.
      * For all 'uniqueness' values
      *  verify the percentage of 'uniqueness' ratios over 80% is 90%.
-     *  
+     *
      * This isn't perfect but it ensures a pretty good degree of uniqueness in the random number generation.
      */
     @Test
     public void numberBetweenIntIntRandomizationQuality() {
-        Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = new Function<Pair<Long, Long>, Double>() {
-            @Override
-            public Double apply(Pair<Long, Long> minMax) {
-                final int min = minMax.getLeft().intValue();
-                final int max = minMax.getRight().intValue();
-                long numbersToGet = calculateNumbersToGet(min, max);
+        Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = minMax -> {
+            final var min = minMax.getLeft().intValue();
+            final var max = minMax.getRight().intValue();
+            var numbersToGet = NumberTest.this.calculateNumbersToGet(min, max);
 
-                return uniquePercentageOfResults(numbersToGet, new Callable<Integer>() {
-                    @Override
-                    public Integer call() throws Exception {
-                        return faker.number().numberBetween(min, max);
-                    }
-                });
-            }
+            return NumberTest.this.uniquePercentageOfResults(numbersToGet, () -> NumberTest.this.faker.number().numberBetween(min, max));
         };
 
-        final double percentGreaterThan80Percent = randomizationQualityTest(individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
+        final var percentGreaterThan80Percent = this.randomizationQualityTest(this.individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
         assertThat("Percentage of runs > 80% unique is gte 90%",
-                percentGreaterThan80Percent, greaterThanOrEqualTo(percentRunsGtUniquePercentage));
+            percentGreaterThan80Percent, greaterThanOrEqualTo(this.percentRunsGtUniquePercentage));
 
         // this covers Issue # 121, the number of times the function is called with the MIN/MAX values here
         // is RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET
         final double extremeRunUniquePercent = minMaxRangeToUniquePercentageFunction.apply(Pair.of((long) Integer.MIN_VALUE, (long) Integer.MAX_VALUE));
         assertThat("Percentage of extreme runs > 80%",
-                extremeRunUniquePercent, greaterThanOrEqualTo(individualRunGtPercentUnique));
+            extremeRunUniquePercent, greaterThanOrEqualTo(this.individualRunGtPercentUnique));
     }
 
     /**
@@ -276,51 +261,43 @@ public class NumberTest extends AbstractFakerTest {
      */
     @Test
     public void numberBetweenLongLongRandomizationQuality() {
-        Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = new Function<Pair<Long, Long>, Double>() {
-            @Override
-            public Double apply(Pair<Long, Long> minMax) {
-                final long min = minMax.getLeft(), max = minMax.getRight();
-                long numbersToGet = calculateNumbersToGet(min, max);
+        Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = minMax -> {
+            final long min = minMax.getLeft(), max = minMax.getRight();
+            var numbersToGet = NumberTest.this.calculateNumbersToGet(min, max);
 
-                return uniquePercentageOfResults(numbersToGet, new Callable<Long>() {
-                    @Override
-                    public Long call() throws Exception {
-                        return faker.number().numberBetween(min, max);
-                    }
-                });
-            }
+            return NumberTest.this.uniquePercentageOfResults(numbersToGet, () -> NumberTest.this.faker.number().numberBetween(min, max));
         };
-        
-        final double percentGreaterThan80Percent = randomizationQualityTest(individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
+
+        final var percentGreaterThan80Percent = this.randomizationQualityTest(this.individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
         assertThat("Percentage of runs > 80% unique is gte 90%",
-                percentGreaterThan80Percent, greaterThanOrEqualTo(percentRunsGtUniquePercentage));
+            percentGreaterThan80Percent, greaterThanOrEqualTo(this.percentRunsGtUniquePercentage));
 
         // this covers Issue # 121, the number of times the function is called with the MIN/MAX values here
         // is RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET.
         final double extremeRunUniquePercent = minMaxRangeToUniquePercentageFunction.apply(Pair.of(Long.MIN_VALUE, Long.MAX_VALUE));
         assertThat("Percentage of extreme runs > 80%",
-                extremeRunUniquePercent, greaterThanOrEqualTo(individualRunGtPercentUnique));
+            extremeRunUniquePercent, greaterThanOrEqualTo(this.individualRunGtPercentUnique));
     }
 
     @Test
     public void testRandomDoubleMaxEqualsMin() {
-        double actual = faker.number().randomDouble(1, 42, 42);
+        var actual = this.faker.number().randomDouble(1, 42, 42);
 
-        double expected = BigDecimal.valueOf(42).doubleValue();
+        var expected = BigDecimal.valueOf(42).doubleValue();
 
         assertThat(actual, equalTo(expected));
     }
 
     @Test
     public void testDigit() {
-        String digit = faker.number().digit();
+        var digit = this.faker.number().digit();
 
         assertThat(digit, matchesRegularExpression("[0-9]"));
     }
 
     @Test
     public void testDigits() {
-        String digits = faker.number().digits(5);
+        var digits = this.faker.number().digits(5);
 
         assertThat(digits, matchesRegularExpression("[0-9]{5}"));
     }
@@ -329,21 +306,21 @@ public class NumberTest extends AbstractFakerTest {
      * Over the series of numbers identified from RANDOMIZATION_QUALITY_RANGE_START to
      * RANDOMIZATION_QUALITY_RANGE_END, create a min/max range of -value/value and
      * with of those min/max values, call <em>percentUniqueRunner</em>.
-     * 
+     *
      * Collect the number of calls to <em>percentUniqueRunner</em> that were
      * above the threshold and finally return that number divided by the total number of calls to
      * <em>percentUniqueRunner</em>.
-     * 
+     *
      * @return percent of percentUniqueRunner's results greater than the threshold
      */
-    private double randomizationQualityTest(final double threshold, 
-                                            final Function<Pair<Long,Long>,Double> percentUniqueRunner) {
-        final int rangeEnd = RANDOMIZATION_QUALITY_RANGE_END;
-        final int rangeStep = RANDOMIZATION_QUALITY_RANGE_STEP;
-        final int rangeStart = RANDOMIZATION_QUALITY_RANGE_START;
+    private double randomizationQualityTest(final double threshold,
+            final Function<Pair<Long,Long>,Double> percentUniqueRunner) {
+        final var rangeEnd = RANDOMIZATION_QUALITY_RANGE_END;
+        final var rangeStep = RANDOMIZATION_QUALITY_RANGE_STEP;
+        final var rangeStart = RANDOMIZATION_QUALITY_RANGE_START;
 
-        final AtomicLong greaterThanThreshold = new AtomicLong();
-        final AtomicLong total = new AtomicLong();
+        final var greaterThanThreshold = new AtomicLong();
+        final var total = new AtomicLong();
 
         for (long l = rangeStart; l < rangeEnd; l += rangeStep) {
             final double percentUnique = percentUniqueRunner.apply(Pair.of(-l,l));
@@ -357,7 +334,7 @@ public class NumberTest extends AbstractFakerTest {
         return (double) greaterThanThreshold.get() / (double) total.get();
     }
 
-    
+
     /**
      * Given a number of iterations, calls <em>callable</em> 'iterations' times and collects the results,
      * then calculates the number of results that were unique and returns the percentage that where unique.
@@ -365,7 +342,7 @@ public class NumberTest extends AbstractFakerTest {
     private <T> double uniquePercentageOfResults(long iterations, Callable<T> callable) {
         try {
             List<T> values = Lists.newArrayList();
-            for (long i = 0; i < iterations; i++) {
+            for (var i = 0L; i < iterations; i++) {
                 values.add(callable.call());
             }
             long setSize = Sets.newHashSet(values).size();
@@ -380,8 +357,10 @@ public class NumberTest extends AbstractFakerTest {
      * given a range, what is the number of values to get within that range for the randomization quality tests.
      */
     private long calculateNumbersToGet(long min, long max) {
-        long numbersToGet = Math.min((max - min) / 4, RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET);
-        if (numbersToGet == 0) numbersToGet = RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET;
+        var numbersToGet = Math.min((max - min) / 4, RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET);
+        if (numbersToGet == 0) {
+            numbersToGet = RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET;
+        }
         return numbersToGet;
     }
 }

@@ -11,16 +11,16 @@ public class IdNumber {
     }
 
     public String valid() {
-        return faker.fakeValuesService().resolve("id_number.valid", this, faker);
+        return this.faker.fakeValuesService().resolve("id_number.valid", this, this.faker);
     }
 
     public String invalid() {
-        return faker.numerify(faker.fakeValuesService().resolve("id_number.invalid", this, faker));
+        return this.faker.numerify(this.faker.fakeValuesService().resolve("id_number.invalid", this, this.faker));
     }
 
     public String ssnValid() {
         EnIdNumber enIdNumber = new EnIdNumber();
-        return enIdNumber.getValidSsn(faker);
+        return enIdNumber.getValidSsn(this.faker);
     }
 
     /**
@@ -28,7 +28,7 @@ public class IdNumber {
      */
     public String validSvSeSsn() {
         SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
-        return svSEIdNumber.getValidSsn(faker);
+        return svSEIdNumber.getValidSsn(this.faker);
     }
 
     /**
@@ -36,6 +36,6 @@ public class IdNumber {
      */
     public String invalidSvSeSsn() {
         SvSEIdNumber svSEIdNumber = new SvSEIdNumber();
-        return svSEIdNumber.getInvalidSsn(faker);
+        return svSEIdNumber.getInvalidSsn(this.faker);
     }
 }

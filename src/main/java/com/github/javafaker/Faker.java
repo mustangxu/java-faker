@@ -1,10 +1,10 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakeValuesService;
-import com.github.javafaker.service.RandomService;
-
 import java.util.Locale;
 import java.util.Random;
+
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
 
 /**
  * Provides utility methods for generating fake strings, such as names, phone
@@ -274,7 +274,7 @@ public class Faker {
      * @return
      */
     public String numerify(String numberString) {
-        return fakeValuesService.numerify(numberString);
+        return this.fakeValuesService.numerify(numberString);
     }
 
     /**
@@ -287,7 +287,7 @@ public class Faker {
      * @return
      */
     public String letterify(String letterString) {
-        return fakeValuesService.letterify(letterString);
+        return this.fakeValuesService.letterify(letterString);
     }
 
     /**
@@ -301,7 +301,7 @@ public class Faker {
      * @return
      */
     public String letterify(String letterString, boolean isUpper) {
-        return fakeValuesService.letterify(letterString, isUpper);
+        return this.fakeValuesService.letterify(letterString, isUpper);
     }
 
     /**
@@ -312,7 +312,7 @@ public class Faker {
      * @return
      */
     public String bothify(String string) {
-        return fakeValuesService.bothify(string);
+        return this.fakeValuesService.bothify(string);
     }
 
     /**
@@ -324,14 +324,14 @@ public class Faker {
      * @return
      */
     public String bothify(String string, boolean isUpper) {
-        return fakeValuesService.bothify(string, isUpper);
+        return this.fakeValuesService.bothify(string, isUpper);
     }
 
     /**
      * Generates a String that matches the given regular expression.
      */
     public String regexify(String regex) {
-        return fakeValuesService.regexify(regex);
+        return this.fakeValuesService.regexify(regex);
     }
 
     public RandomService random() {
@@ -339,7 +339,7 @@ public class Faker {
     }
 
     public Currency currency() {
-        return currency;
+        return this.currency;
 
     }
 
@@ -348,348 +348,348 @@ public class Faker {
     }
 
     public Ancient ancient() {
-        return ancient;
+        return this.ancient;
     }
 
     public App app() {
-        return app;
+        return this.app;
     }
 
     public Artist artist() {
-        return artist;
+        return this.artist;
     }
 
     public Avatar avatar() {
-        return avatar;
+        return this.avatar;
     }
 
     public Aviation aviation() {
-        return aviation;
+        return this.aviation;
     }
 
     public Music music() {
-        return music;
+        return this.music;
     }
 
     public Name name() {
-        return name;
+        return this.name;
     }
 
     public Number number() {
-        return number;
+        return this.number;
     }
 
     public Internet internet() {
-        return internet;
+        return this.internet;
     }
 
     public PhoneNumber phoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public Pokemon pokemon() {
-        return pokemon;
+        return this.pokemon;
     }
 
     public Lorem lorem() {
-        return lorem;
+        return this.lorem;
     }
 
     public Address address() {
-        return address;
+        return this.address;
     }
 
     public Book book() {
-        return book;
+        return this.book;
     }
 
     public Buffy buffy() {
-        return buffy;
+        return this.buffy;
     }
 
     public Business business() {
-        return business;
+        return this.business;
     }
 
     public ChuckNorris chuckNorris() {
-        return chuckNorris;
+        return this.chuckNorris;
     }
 
     public Color color() {
-        return color;
+        return this.color;
     }
 
     public Commerce commerce() {
-        return commerce;
+        return this.commerce;
     }
 
     public Company company() {
-        return company;
+        return this.company;
     }
 
     public Crypto crypto() {
-        return crypto;
+        return this.crypto;
     }
 
     public Hacker hacker() {
-        return hacker;
+        return this.hacker;
     }
 
     public IdNumber idNumber() {
-        return idNumber;
+        return this.idNumber;
     }
 
     public Options options() {
-        return options;
+        return this.options;
     }
 
     public Code code() {
-        return code;
+        return this.code;
     }
 
     public Coin coin() {
-        return coin;
+        return this.coin;
     }
 
     public File file() {
-        return file;
+        return this.file;
     }
 
     public Finance finance() {
-        return finance;
+        return this.finance;
     }
 
     public Food food() {
-        return food;
+        return this.food;
     }
 
     public ElderScrolls elderScrolls() {
-        return elderScrolls;
+        return this.elderScrolls;
     }
 
     public GameOfThrones gameOfThrones() {
-        return gameOfThrones;
+        return this.gameOfThrones;
     }
 
     public Gender gender() {
-        return gender;
+        return this.gender;
     }
 
     public DateAndTime date() {
-        return dateAndTime;
+        return this.dateAndTime;
     }
 
     public Demographic demographic() {
-        return demographic;
+        return this.demographic;
     }
 
     public Dog dog() {
-        return dog;
+        return this.dog;
     }
 
     public Educator educator() {
-        return educator;
+        return this.educator;
     }
 
     public SlackEmoji slackEmoji() {
-        return slackEmoji;
+        return this.slackEmoji;
     }
 
     public Shakespeare shakespeare() {
-        return shakespeare;
+        return this.shakespeare;
     }
 
     public Space space() {
-        return space;
+        return this.space;
     }
 
     public Superhero superhero() {
-        return superhero;
+        return this.superhero;
     }
 
     public Bool bool() {
-        return bool;
+        return this.bool;
     }
 
     public Team team() {
-        return team;
+        return this.team;
     }
 
-    public Beer beer() { return beer; }
+    public Beer beer() { return this.beer; }
 
     public University university() {
-        return university;
+        return this.university;
     }
 
     public Cat cat() {
-        return cat;
+        return this.cat;
     }
 
     public Stock stock() {
-        return stock;
+        return this.stock;
     }
 
     public LordOfTheRings lordOfTheRings() {
-        return lordOfTheRings;
+        return this.lordOfTheRings;
     }
 
     public Zelda zelda() {
-        return zelda;
+        return this.zelda;
     }
 
     public HarryPotter harryPotter() {
-        return harryPotter;
+        return this.harryPotter;
     }
 
     public RockBand rockBand() {
-        return rockBand;
+        return this.rockBand;
     }
 
     public Esports esports() {
-        return esports;
+        return this.esports;
     }
 
     public Friends friends() {
-        return friends;
+        return this.friends;
     }
 
     public Hipster hipster() {
-        return hipster;
+        return this.hipster;
     }
 
     public Job job() {
-        return job;
+        return this.job;
     }
 
     public TwinPeaks twinPeaks() {
-        return twinPeaks;
+        return this.twinPeaks;
     }
 
     public RickAndMorty rickAndMorty() {
-        return rickAndMorty;
+        return this.rickAndMorty;
     }
 
     public Yoda yoda() {
-        return yoda;
+        return this.yoda;
     }
 
     public Matz matz() {
-        return matz;
+        return this.matz;
     }
 
     public Witcher witcher() {
-        return witcher;
+        return this.witcher;
     }
 
     public DragonBall dragonBall() {
-        return dragonBall;
+        return this.dragonBall;
     }
 
     public FunnyName funnyName() {
-        return funnyName;
+        return this.funnyName;
     }
 
     public HitchhikersGuideToTheGalaxy hitchhikersGuideToTheGalaxy() {
-        return hitchhikersGuideToTheGalaxy;
+        return this.hitchhikersGuideToTheGalaxy;
     }
 
     public Hobbit hobbit() {
-        return hobbit;
+        return this.hobbit;
     }
 
     public HowIMetYourMother howIMetYourMother() {
-        return howIMetYourMother;
+        return this.howIMetYourMother;
     }
 
     public LeagueOfLegends leagueOfLegends() {
-        return leagueOfLegends;
+        return this.leagueOfLegends;
     }
 
     public Overwatch overwatch() {
-        return overwatch;
+        return this.overwatch;
     }
 
     public Robin robin() {
-        return robin;
+        return this.robin;
     }
 
     public StarTrek starTrek() {
-        return starTrek;
+        return this.starTrek;
     }
 
     public Weather weather() {
-        return weather;
+        return this.weather;
     }
 
     public Lebowski lebowski() {
-        return lebowski;
+        return this.lebowski;
     }
 
     public Medical medical() {
-        return medical;
+        return this.medical;
     }
 
     public Country country() {
-        return country;
+        return this.country;
     }
 
     public Animal animal() {
-        return animal;
+        return this.animal;
     }
 
     public BackToTheFuture backToTheFuture() {
-        return backToTheFuture;
+        return this.backToTheFuture;
     }
 
     public PrincessBride princessBride() {
-        return princessBride;
+        return this.princessBride;
     }
 
     public Relationships relationships() {
-        return relationships;
+        return this.relationships;
     }
 
     public Nation nation() {
-        return nation;
+        return this.nation;
     }
 
     public Dune dune() {
-        return dune;
+        return this.dune;
     }
 
     public AquaTeenHungerForce aquaTeenHungerForce() {
-        return aquaTeenHungerForce;
+        return this.aquaTeenHungerForce;
     }
 
     public ProgrammingLanguage programmingLanguage() {
-        return programmingLanguage;
+        return this.programmingLanguage;
     }
 
     public Kaamelott kaamelott() {
-        return kaamelott;
+        return this.kaamelott;
     }
 
     public Photography photography() {
-        return  photography;
+        return  this.photography;
     }
 
     public StarCraft starCraft() {
-        return starCraft;
+        return this.starCraft;
     }
 
-    public BojackHorseman bojackHorseman() { return bojackHorseman; }
+    public BojackHorseman bojackHorseman() { return this.bojackHorseman; }
 
-    public Disease disease() {return disease; }
+    public Disease disease() {return this.disease; }
 
-    public Basketball basketball() { return basketball; }
+    public Basketball basketball() { return this.basketball; }
 
-    public Barcode barcode() { return barcode; }
+    public Barcode barcode() { return this.barcode; }
 
-    public Sip sip() { return sip; }
+    public Sip sip() { return this.sip; }
 
-    public EnglandFootBall englandfootball() { return englandfootball; }
+    public EnglandFootBall englandfootball() { return this.englandfootball; }
 
-    public Mountain mountain() { return mountain; }
+    public Mountain mountain() { return this.mountain; }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);

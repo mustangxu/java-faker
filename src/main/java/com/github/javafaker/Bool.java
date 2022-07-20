@@ -8,6 +8,6 @@ public class Bool {
     }
 
     public boolean bool() {
-        return faker.random().nextBoolean();
+        return this.faker.random().nextBoolean();
     }
 }

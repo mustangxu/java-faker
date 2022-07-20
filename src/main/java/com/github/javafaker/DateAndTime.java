@@ -71,7 +71,7 @@ public class DateAndTime {
         long upperBound = unit.toMillis(atMost);
 
         long futureMillis = referenceDate.getTime();
-        futureMillis += 1 + faker.random().nextLong(upperBound - 1);
+        futureMillis += 1 + this.faker.random().nextLong(upperBound - 1);
 
         return new Date(futureMillis);
     }
@@ -123,7 +123,7 @@ public class DateAndTime {
         long upperBound = unit.toMillis(atMost);
 
         long futureMillis = referenceDate.getTime();
-        futureMillis -= 1 + faker.random().nextLong(upperBound - 1);
+        futureMillis -= 1 + this.faker.random().nextLong(upperBound - 1);
 
         return new Date(futureMillis);
     }
@@ -148,7 +148,7 @@ public class DateAndTime {
             return from;
         }
 
-        long offsetMillis = faker.random().nextLong(to.getTime() - from.getTime());
+        long offsetMillis = this.faker.random().nextLong(to.getTime() - from.getTime());
         return new Date(from.getTime() + offsetMillis);
     }
 

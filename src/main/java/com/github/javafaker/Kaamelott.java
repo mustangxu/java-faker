@@ -8,10 +8,10 @@ public class Kaamelott {
     }
 
     public String character() {
-        return faker.fakeValuesService().resolve("kaamelott.characters", this, faker);
+        return this.faker.fakeValuesService().resolve("kaamelott.characters", this, this.faker);
     }
 
     public String quote() {
-        return faker.fakeValuesService().resolve("kaamelott.quotes", this, faker);
+        return this.faker.fakeValuesService().resolve("kaamelott.quotes", this, this.faker);
     }
 }

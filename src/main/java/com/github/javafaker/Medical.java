@@ -9,18 +9,18 @@ public class Medical {
     }
 
     public String medicineName() {
-        return faker.fakeValuesService().resolve("medical.medicine_name", this, faker);
+        return this.faker.fakeValuesService().resolve("medical.medicine_name", this, this.faker);
     }
 
     public String diseaseName() {
-        return faker.fakeValuesService().resolve("medical.disease_name", this, faker);
+        return this.faker.fakeValuesService().resolve("medical.disease_name", this, this.faker);
     }
 
     public String hospitalName() {
-        return faker.fakeValuesService().resolve("medical.hospital_name", this, faker);
+        return this.faker.fakeValuesService().resolve("medical.hospital_name", this, this.faker);
     }
 
     public String symptoms() {
-        return faker.fakeValuesService().resolve("medical.symptoms", this, faker);
+        return this.faker.fakeValuesService().resolve("medical.symptoms", this, this.faker);
     }
 }
