@@ -54,8 +54,6 @@
 		<dependency>
 			<groupId>org.yaml</groupId>
 			<artifactId>snakeyaml</artifactId>
-			<version>1.26</version>
-			<classifier>android</classifier>
 		</dependency>
 		<dependency>
 			<groupId>com.github.mifmif</groupId>
@@ -85,7 +83,7 @@
 		<dependency>
 			<groupId>org.reflections</groupId>
 			<artifactId>reflections</artifactId>
-			<version>0.9.11</version>
+			<version>0.10.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -96,7 +94,13 @@
 		<dependency>
 			<groupId>commons-validator</groupId>
 			<artifactId>commons-validator</artifactId>
-			<version>1.6</version>
+			<version>1.7</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>31.1-jre</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
