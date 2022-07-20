@@ -1,7 +1,5 @@
 package com.github.javafaker;
 
-import java.nio.file.FileSystems;
-
 public class File {
     private final Faker faker;
 
@@ -22,7 +20,8 @@ public class File {
     }
 
     public String fileName(String dirOrNull, String nameOrNull, String extensionOrNull, String separatorOrNull) {
-        final var sep = separatorOrNull == null ? FileSystems.getDefault().getSeparator() : separatorOrNull;
+        final var sep = separatorOrNull == null ? java.io.File.separator
+            : separatorOrNull;
         final var dir = dirOrNull == null ? this.faker.internet().slug() : dirOrNull;
         final var name = nameOrNull == null ? this.faker.lorem().word().toLowerCase() : nameOrNull;
         final var ext = extensionOrNull == null ? this.extension() : extensionOrNull;

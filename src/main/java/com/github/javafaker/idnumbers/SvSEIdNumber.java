@@ -17,7 +17,7 @@ public class SvSEIdNumber {
     public String getValidSsn(Faker f) {
         var candidate = "";
         while (!this.validSwedishSsn(candidate)) {
-            var pattern = this.getPattern(f);
+            var pattern = SvSEIdNumber.getPattern(f);
             candidate = f.numerify(pattern);
         }
 
@@ -27,14 +27,14 @@ public class SvSEIdNumber {
     public String getInvalidSsn(Faker f) {
         var candidate = "121212-1212"; // Seed with a valid number
         while (this.validSwedishSsn(candidate)) {
-            var pattern = this.getPattern(f);
+            var pattern = SvSEIdNumber.getPattern(f);
             candidate = f.numerify(pattern);
         }
 
         return candidate;
     }
 
-    private String getPattern(Faker faker) {
+    private static String getPattern(Faker faker) {
         return validPatterns[faker.random().nextInt(2)];
     }
 
@@ -44,19 +44,20 @@ public class SvSEIdNumber {
         }
 
         try {
-            if (this.parseDate(ssn)) {
+            if (SvSEIdNumber.parseDate(ssn)) {
                 return false;
             }
         } catch (ParseException e) {
+            e.printStackTrace();
             return false;
         }
 
-        var calculatedChecksum = this.calculateChecksum(ssn);
+        var calculatedChecksum = SvSEIdNumber.calculateChecksum(ssn);
         var checksum = Integer.parseInt(ssn.substring(10, 11));
         return checksum == calculatedChecksum;
     }
 
-    private boolean parseDate(String ssn) throws ParseException {
+    private static boolean parseDate(String ssn) throws ParseException {
         var sdf = new SimpleDateFormat("yyMMdd");
         var dateString = ssn.substring(0, 6);
         var date = sdf.parse(dateString);
@@ -66,7 +67,7 @@ public class SvSEIdNumber {
         return !reversed.equals(dateString);
     }
 
-    private int calculateChecksum(String number) {
+    private static int calculateChecksum(String number) {
         var dateString = number.substring(0, 6);
         var birthNumber = number.substring(7, 10);
 

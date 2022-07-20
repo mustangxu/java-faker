@@ -16,6 +16,7 @@ public class Options {
      * @param <E>   The type of the elements in the varargs.
      * @return A randomly selected element from the varargs.
      */
+    @SuppressWarnings("unchecked")
     public <E> E option(E... options) {
         return options[this.faker.random().nextInt(options.length)];
     }
@@ -27,7 +28,7 @@ public class Options {
      * @return A randomly selected element from the enum.
      */
     public <E extends Enum<E>> E option(Class<E> enumeration) {
-        E[] enumConstants = enumeration.getEnumConstants();
+        var enumConstants = enumeration.getEnumConstants();
         return enumConstants[this.faker.random().nextInt(enumConstants.length)];
     }
 

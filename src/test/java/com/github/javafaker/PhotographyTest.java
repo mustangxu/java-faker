@@ -21,37 +21,37 @@ public class PhotographyTest extends AbstractFakerTest{
     @Test
     public void testTerm() {
         final var value = this.faker.photography().term();
-        this.assertNonNullOrEmpty(value);
+        PhotographyTest.assertNonNullOrEmpty(value);
     }
 
     @Test
     public void brand() {
         final var value = this.faker.photography().brand();
-        this.assertNonNullOrEmpty(value);
+        PhotographyTest.assertNonNullOrEmpty(value);
     }
 
     @Test
     public void camera() {
         final var value = this.faker.photography().camera();
-        this.assertNonNullOrEmpty(value);
+        PhotographyTest.assertNonNullOrEmpty(value);
     }
 
     @Test
     public void lens() {
         final var value = this.faker.photography().lens();
-        this.assertNonNullOrEmpty(value);
+        PhotographyTest.assertNonNullOrEmpty(value);
     }
 
     @Test
     public void genre() {
         final var value = this.faker.photography().genre();
-        this.assertNonNullOrEmpty(value);
+        PhotographyTest.assertNonNullOrEmpty(value);
     }
 
     @Test
     public void imageTag() {
         final var value = this.faker.photography().imageTag();
-        this.assertNonNullOrEmpty(value);
+        PhotographyTest.assertNonNullOrEmpty(value);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class PhotographyTest extends AbstractFakerTest{
         assertThat(value, matchesRegularExpression("\\d{1,}"));
     }
 
-    private void assertNonNullOrEmpty(String value) {
+    private static void assertNonNullOrEmpty(String value) {
         assertNotNull(value);
         assertFalse(value.isEmpty());
     }

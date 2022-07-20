@@ -1,8 +1,8 @@
 package com.github.javafaker;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -204,12 +204,12 @@ public class NumberTest extends AbstractFakerTest {
     public void randomDoubleRandomizationQuality() {
         Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = minMax -> {
             final int min = minMax.getLeft().intValue(), max = minMax.getRight().intValue();
-            var numbersToGet = NumberTest.this.calculateNumbersToGet(min, max);
+            var numbersToGet = NumberTest.calculateNumbersToGet(min, max);
 
-            return NumberTest.this.uniquePercentageOfResults(numbersToGet, () -> NumberTest.this.faker.number().randomDouble(0, min, max));
+            return NumberTest.uniquePercentageOfResults(numbersToGet, () -> NumberTest.this.faker.number().randomDouble(0, min, max));
         };
 
-        final var percentGreaterThan80Percent = this.randomizationQualityTest(this.individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
+        final var percentGreaterThan80Percent = NumberTest.randomizationQualityTest(this.individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
         assertThat("Percentage of runs > 80% unique is gte 90%",
             percentGreaterThan80Percent, greaterThanOrEqualTo(this.percentRunsGtUniquePercentage));
 
@@ -234,12 +234,12 @@ public class NumberTest extends AbstractFakerTest {
         Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = minMax -> {
             final var min = minMax.getLeft().intValue();
             final var max = minMax.getRight().intValue();
-            var numbersToGet = NumberTest.this.calculateNumbersToGet(min, max);
+            var numbersToGet = NumberTest.calculateNumbersToGet(min, max);
 
-            return NumberTest.this.uniquePercentageOfResults(numbersToGet, () -> NumberTest.this.faker.number().numberBetween(min, max));
+            return NumberTest.uniquePercentageOfResults(numbersToGet, () -> NumberTest.this.faker.number().numberBetween(min, max));
         };
 
-        final var percentGreaterThan80Percent = this.randomizationQualityTest(this.individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
+        final var percentGreaterThan80Percent = NumberTest.randomizationQualityTest(this.individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
         assertThat("Percentage of runs > 80% unique is gte 90%",
             percentGreaterThan80Percent, greaterThanOrEqualTo(this.percentRunsGtUniquePercentage));
 
@@ -263,12 +263,12 @@ public class NumberTest extends AbstractFakerTest {
     public void numberBetweenLongLongRandomizationQuality() {
         Function<Pair<Long, Long>, Double> minMaxRangeToUniquePercentageFunction = minMax -> {
             final long min = minMax.getLeft(), max = minMax.getRight();
-            var numbersToGet = NumberTest.this.calculateNumbersToGet(min, max);
+            var numbersToGet = NumberTest.calculateNumbersToGet(min, max);
 
-            return NumberTest.this.uniquePercentageOfResults(numbersToGet, () -> NumberTest.this.faker.number().numberBetween(min, max));
+            return NumberTest.uniquePercentageOfResults(numbersToGet, () -> NumberTest.this.faker.number().numberBetween(min, max));
         };
 
-        final var percentGreaterThan80Percent = this.randomizationQualityTest(this.individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
+        final var percentGreaterThan80Percent = NumberTest.randomizationQualityTest(this.individualRunGtPercentUnique, minMaxRangeToUniquePercentageFunction);
         assertThat("Percentage of runs > 80% unique is gte 90%",
             percentGreaterThan80Percent, greaterThanOrEqualTo(this.percentRunsGtUniquePercentage));
 
@@ -313,7 +313,7 @@ public class NumberTest extends AbstractFakerTest {
      *
      * @return percent of percentUniqueRunner's results greater than the threshold
      */
-    private double randomizationQualityTest(final double threshold,
+    private static double randomizationQualityTest(final double threshold,
             final Function<Pair<Long,Long>,Double> percentUniqueRunner) {
         final var rangeEnd = RANDOMIZATION_QUALITY_RANGE_END;
         final var rangeStep = RANDOMIZATION_QUALITY_RANGE_STEP;
@@ -339,7 +339,8 @@ public class NumberTest extends AbstractFakerTest {
      * Given a number of iterations, calls <em>callable</em> 'iterations' times and collects the results,
      * then calculates the number of results that were unique and returns the percentage that where unique.
      */
-    private <T> double uniquePercentageOfResults(long iterations, Callable<T> callable) {
+    private static <T> double uniquePercentageOfResults(long iterations,
+            Callable<T> callable) {
         try {
             List<T> values = Lists.newArrayList();
             for (var i = 0L; i < iterations; i++) {
@@ -356,7 +357,7 @@ public class NumberTest extends AbstractFakerTest {
     /**
      * given a range, what is the number of values to get within that range for the randomization quality tests.
      */
-    private long calculateNumbersToGet(long min, long max) {
+    private static long calculateNumbersToGet(long min, long max) {
         var numbersToGet = Math.min((max - min) / 4, RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET);
         if (numbersToGet == 0) {
             numbersToGet = RANDOMIZATION_TESTS_MAX_NUMBERS_TO_GET;

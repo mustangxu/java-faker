@@ -88,9 +88,9 @@ public class Code {
                 .append(this.faker.expression("#{code.isbn_registrant}"))
                 .append('-');
 
-        final var checkDigit = this.isbn10CheckDigit(isbn10);
+        final var checkDigit = Code.isbn10CheckDigit(isbn10);
         isbn10.append(checkDigit != 10 ? checkDigit : "X");
-        return separator ? isbn10.toString() : this.stripIsbnSeparator(isbn10);
+        return separator ? isbn10.toString() : Code.stripIsbnSeparator(isbn10);
     }
 
     /**
@@ -114,13 +114,13 @@ public class Code {
                 .append(this.faker.expression("#{code.isbn_registrant}"))
                 .append('-');
 
-        final var checkDigit = this.isbn13CheckDigit(isbn13);
+        final var checkDigit = Code.isbn13CheckDigit(isbn13);
         isbn13.append(checkDigit);
-        return separator ? isbn13.toString() : this.stripIsbnSeparator(isbn13);
+        return separator ? isbn13.toString() : Code.stripIsbnSeparator(isbn13);
     }
 
-    private final int isbn10CheckDigit(CharSequence t) {
-        var value = this.stripIsbnSeparator(t);
+    private final static int isbn10CheckDigit(CharSequence t) {
+        var value = Code.stripIsbnSeparator(t);
         var sum = 0;
         for (var i = 0; i < value.length(); i++) {
             sum += (i + 1) * toInt(value.substring(i, i + 1));
@@ -128,8 +128,8 @@ public class Code {
         return sum % 11;
     }
 
-    private final int isbn13CheckDigit(CharSequence t) {
-        var value = this.stripIsbnSeparator(t);
+    private final static int isbn13CheckDigit(CharSequence t) {
+        var value = Code.stripIsbnSeparator(t);
         var sum = 0;
         var multiplier = 0;
         for (var i = 0; i < value.length(); i++) {
@@ -140,7 +140,7 @@ public class Code {
         return (10 - sum % 10) % 10;
     }
 
-    private final String stripIsbnSeparator(CharSequence t) {
+    private final static String stripIsbnSeparator(CharSequence t) {
         return t.toString().replace("-","");
     }
 

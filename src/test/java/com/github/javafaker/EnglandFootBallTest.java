@@ -1,9 +1,10 @@
 package com.github.javafaker;
 
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.emptyOrNullString;
 
 import org.junit.Test;
 
@@ -14,14 +15,14 @@ public class EnglandFootBallTest extends AbstractFakerTest{
     @Test
     public void testLeague() {
         var league = this.faker.englandfootball().league();
-        assertThat(league, not(isEmptyOrNullString()));
+        assertThat(league, not(is(emptyOrNullString())));
 
     }
 
     @Test
     public void testTeam() {
         var team = this.faker.englandfootball().team();
-        assertThat(team, not(isEmptyOrNullString()));
+        assertThat(team, not(is(emptyOrNullString())));
 
     }
 }

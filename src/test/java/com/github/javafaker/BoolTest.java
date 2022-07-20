@@ -1,16 +1,17 @@
 package com.github.javafaker;
 
-import org.junit.Test;
-
-import static org.hamcrest.Matchers.isOneOf;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.oneOf;
+
+import org.junit.Test;
 
 public class BoolTest extends AbstractFakerTest {
 
     @Test
     public void testBool() {
-        for (int i = 0; i < 100; i++) {
-            assertThat(this.faker.bool().bool(), isOneOf(true, false));
+        for (var i = 0; i < 100; i++) {
+            assertThat(this.faker.bool().bool(), is(oneOf(true, false)));
         }
     }
 }

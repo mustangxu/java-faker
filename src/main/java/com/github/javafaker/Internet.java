@@ -23,7 +23,7 @@ public class Internet {
     }
 
     public String emailAddress(String localPart) {
-        return this.emailAddress(localPart, FakerIDN.toASCII(this.faker.fakeValuesService().resolve("internet.free_email", this, this.faker)));
+        return Internet.emailAddress(localPart, FakerIDN.toASCII(this.faker.fakeValuesService().resolve("internet.free_email", this, this.faker)));
     }
 
     public String safeEmailAddress() {
@@ -31,10 +31,10 @@ public class Internet {
     }
 
     public String safeEmailAddress(String localPart) {
-        return this.emailAddress(localPart, FakerIDN.toASCII(this.faker.fakeValuesService().resolve("internet.safe_email", this, this.faker)));
+        return Internet.emailAddress(localPart, FakerIDN.toASCII(this.faker.fakeValuesService().resolve("internet.safe_email", this, this.faker)));
     }
 
-    private String emailAddress(String localPart, String domain) {
+    private static String emailAddress(String localPart, String domain) {
         return join(stripAccents(localPart), "@", domain);
     }
 

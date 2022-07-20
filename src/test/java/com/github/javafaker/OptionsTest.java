@@ -1,8 +1,8 @@
 package com.github.javafaker;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.in;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.Matchers.oneOf;
 
 import java.util.Arrays;
@@ -50,7 +50,7 @@ public class OptionsTest extends AbstractFakerTest {
         Integer[] array = { 1, 2, 3, 5, 8, 13, 21 };
 
         for (var i = 1; i < 10; i++) {
-            assertThat(this.faker.options().nextElement(array), isIn(array));
+            assertThat(this.faker.options().nextElement(array), is(in(array)));
         }
     }
 
@@ -58,7 +58,7 @@ public class OptionsTest extends AbstractFakerTest {
     public void testNextListElement() {
         List<Integer> list = Arrays.asList(1, 2, 3, 5, 8, 13, 21);
         for (var i = 1; i < 10; i++) {
-            assertThat(this.faker.options().nextElement(list), isIn(list));
+            assertThat(this.faker.options().nextElement(list), is(in(list)));
         }
     }
 

@@ -77,10 +77,12 @@ public class FakeValues implements FakeValuesInterface {
 
             return localeBased.get("faker");
         }catch (IOException ex){
+            ex.printStackTrace();
             return null;
         }
     }
 
+    @SuppressWarnings("hiding")
     private InputStream findStream(String filename) {
         var streamOnClass = this.getClass().getResourceAsStream(filename);
         if (streamOnClass != null) {
@@ -89,6 +91,7 @@ public class FakeValues implements FakeValuesInterface {
         return this.getClass().getClassLoader().getResourceAsStream(filename);
     }
 
+    @SuppressWarnings("hiding")
     boolean supportsPath(String path) {
         return this.path.equals(path);
     }

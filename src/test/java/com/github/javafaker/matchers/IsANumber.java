@@ -11,6 +11,7 @@ public class IsANumber extends TypeSafeMatcher<String> {
         try {
             Double.valueOf(item);
         } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
             return false;
         }
         return true;

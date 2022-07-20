@@ -58,7 +58,7 @@ public class FakeValuesService {
             throw new IllegalArgumentException("locale is required");
         }
         this.randomService = randomService;
-        locale = this.normalizeLocale(locale);
+        locale = FakeValuesService.normalizeLocale(locale);
 
         final var locales = this.localeChain(locale);
         final List<FakeValuesInterface> all = new ArrayList(locales.size());
@@ -91,7 +91,7 @@ public class FakeValuesService {
             return Collections.singletonList(Locale.ENGLISH);
         }
 
-        final var normalized = this.normalizeLocale(from);
+        final var normalized = FakeValuesService.normalizeLocale(from);
 
         final List<Locale> chain = new ArrayList<>(3);
         chain.add(normalized);
@@ -107,7 +107,7 @@ public class FakeValuesService {
      * it was instantiated.  new Locale("pt-br") will be normalized to a locale constructed
      * with new Locale("pt","BR").
      */
-    private Locale normalizeLocale(Locale locale) {
+    private static Locale normalizeLocale(Locale locale) {
         final var parts = locale.toString().split("[-_]");
 
         if (parts.length == 1) {
@@ -385,7 +385,7 @@ public class FakeValuesService {
         // Name.first_name (resolve to faker.name().firstName())
         final var simpleDirective = FakeValuesService.isDotDirective(directive) || current == null
                 ? directive
-                    : this.classNameToYamlName(current) + "." + directive;
+                    : FakeValuesService.classNameToYamlName(current) + "." + directive;
 
         String resolved = null;
         // resolve method references on CURRENT object like #{number_between '1','10'} on Number or
@@ -449,7 +449,7 @@ public class FakeValuesService {
     /**
      * @return a yaml style name from the classname of the supplied object (PhoneNumber => phone_number)
      */
-    private String classNameToYamlName(Object current) {
+    private static String classNameToYamlName(Object current) {
         return FakeValuesService.javaNameToYamlName(current.getClass().getSimpleName());
     }
 
@@ -562,6 +562,7 @@ public class FakeValuesService {
                     coerced.add(coercedArgument);
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 this.log.fine("Unable to coerce " + args.get(i) + " to " + toType.getSimpleName() + " via " + toType.getSimpleName() + "(String) constructor.");
                 return null;
             }
@@ -585,8 +586,8 @@ public class FakeValuesService {
         private final List<Object> coerced;
 
         private MethodAndCoercedArgs(Method m, List<Object> coerced) {
-            this.method = this.requireNonNull(m, "method cannot be null");
-            this.coerced = this.requireNonNull(coerced, "coerced arguments cannot be null");
+            this.method = MethodAndCoercedArgs.requireNonNull(m, "method cannot be null");
+            this.coerced = MethodAndCoercedArgs.requireNonNull(coerced, "coerced arguments cannot be null");
         }
 
         private Object invoke(Object on) throws InvocationTargetException, IllegalAccessException {
@@ -596,7 +597,7 @@ public class FakeValuesService {
         /**
          * source level precludes me from using Objects.requireNonNull
          */
-        private <T> T requireNonNull(T instance, String messageIfNull) {
+        private static <T> T requireNonNull(T instance, String messageIfNull) {
             if (instance == null) {
                 throw new NullPointerException(messageIfNull);
             }
