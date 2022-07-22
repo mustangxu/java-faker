@@ -28,7 +28,8 @@ public class RandomServiceTest extends AbstractFakerTest {
 
     private RandomService randomService;
 
-    public RandomServiceTest(RandomService service) {
+    @SuppressWarnings("unused")
+    public RandomServiceTest(String ignoredTitle, RandomService service) {
         this.randomService = service;
     }
 
