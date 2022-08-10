@@ -8,14 +8,14 @@ import static org.hamcrest.Matchers.oneOf;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class OptionsTest extends AbstractFakerTest {
 
     private String[] options;
 
-    @Before
+    @BeforeEach
     public void setupOptions() {
         this.options = new String[]{"A", "B", "C"};
     }

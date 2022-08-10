@@ -5,7 +5,7 @@ import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegu
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.github.javafaker.repeating.Repeat;
 

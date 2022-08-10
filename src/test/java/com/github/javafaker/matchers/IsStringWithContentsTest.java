@@ -1,16 +1,16 @@
 package com.github.javafaker.matchers;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class IsStringWithContentsTest {
 
     private IsStringWithContents matcher;
 
-    @Before
+    @BeforeEach
     public void before() {
         this.matcher = new IsStringWithContents();
     }

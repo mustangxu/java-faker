@@ -10,7 +10,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Random;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AddressTest extends AbstractFakerTest {
 
@@ -18,6 +18,8 @@ public class AddressTest extends AbstractFakerTest {
 
     @Test
     public void testStreetAddressStartsWithNumber() {
+        System.out.println(Thread.currentThread());
+
         final var streetAddressNumber = this.faker.address().streetAddress();
         assertThat(streetAddressNumber, matchesRegularExpression("[0-9]+ .+"));
     }

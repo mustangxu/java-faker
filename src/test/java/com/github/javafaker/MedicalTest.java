@@ -1,6 +1,6 @@
 package com.github.javafaker;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.github.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static org.hamcrest.MatcherAssert.assertThat;

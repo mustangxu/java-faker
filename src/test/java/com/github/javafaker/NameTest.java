@@ -7,7 +7,7 @@ import static org.hamcrest.core.IsNot.not;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.github.javafaker.repeating.Repeat;
 

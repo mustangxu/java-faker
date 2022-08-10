@@ -5,7 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.text.DecimalFormatSymbols;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CommerceTest extends AbstractFakerTest {
 

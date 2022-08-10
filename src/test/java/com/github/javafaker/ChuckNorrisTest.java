@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.emptyOrNullString;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ChuckNorrisTest extends AbstractFakerTest {
 

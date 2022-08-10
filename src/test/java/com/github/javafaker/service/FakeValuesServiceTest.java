@@ -14,8 +14,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.hamcrest.core.Is;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 
@@ -34,7 +34,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     private FakeValuesService fakeValuesService;
 
     @Override
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         super.before();
 

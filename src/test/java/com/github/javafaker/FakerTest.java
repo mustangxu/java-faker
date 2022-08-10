@@ -3,11 +3,12 @@ package com.github.javafaker;
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Locale;
 import java.util.Random;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.github.javafaker.repeating.Repeat;
 
@@ -108,19 +109,22 @@ public class FakerTest extends AbstractFakerTest {
         assertThat(this.faker.regexify("\\.\\*\\?\\+"), matchesRegularExpression("\\.\\*\\?\\+"));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void badExpressionTooManyArgs() {
-        this.faker.expression("#{regexify 'a','a'}");
+        assertThrows( RuntimeException.class, ()->
+        this.faker.expression("#{regexify 'a','a'}"));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void badExpressionTooFewArgs() {
-        this.faker.expression("#{regexify}");
+        assertThrows(RuntimeException.class,
+            () -> this.faker.expression("#{regexify}"));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void badExpressionCouldntCoerce() {
-        this.faker.expression("#{number.number_between 'x','10'}");
+        assertThrows(RuntimeException.class,
+            () -> this.faker.expression("#{number.number_between 'x','10'}"));
     }
 
     @Test
@@ -157,10 +161,12 @@ public class FakerTest extends AbstractFakerTest {
         assertThat(this.faker.resolve("address.city_prefix"), not(is(emptyString())));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void resolveShouldThrowExceptionWhenPropertyDoesntExist() {
-        final var resolve = this.faker.resolve("address.nothing");
-        assertThat(resolve, is(nullValue()));
+        assertThrows(RuntimeException.class, () -> {
+            final var resolve = this.faker.resolve("address.nothing");
+            assertThat(resolve, is(nullValue()));
+        });
     }
 
     @Test

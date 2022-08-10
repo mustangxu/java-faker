@@ -4,8 +4,8 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 
-import org.junit.Before;
 import org.junit.Rule;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
@@ -19,7 +19,7 @@ public class AbstractFakerTest {
     @Spy
     protected Faker faker;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         try (var m = MockitoAnnotations.openMocks(this);) {
         }

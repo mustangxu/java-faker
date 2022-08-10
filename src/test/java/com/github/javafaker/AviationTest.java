@@ -4,7 +4,7 @@ import static com.github.javafaker.matchers.IsStringWithContents.isStringWithCon
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AviationTest extends AbstractFakerTest {
 

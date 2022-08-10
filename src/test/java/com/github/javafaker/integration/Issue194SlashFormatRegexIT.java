@@ -1,7 +1,7 @@
 package com.github.javafaker.integration;
 
 import com.github.javafaker.Faker;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 

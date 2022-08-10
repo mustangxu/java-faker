@@ -6,7 +6,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.core.IsNot.not;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FriendsTest extends AbstractFakerTest {
 

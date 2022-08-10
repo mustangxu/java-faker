@@ -5,8 +5,8 @@ import static org.hamcrest.Matchers.is;
 
 import java.util.Random;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class RandomFakerTest extends AbstractFakerTest {
 
@@ -14,7 +14,7 @@ public class RandomFakerTest extends AbstractFakerTest {
     private Random random;
 
     @Override
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         super.before();
         this.random = new Random();

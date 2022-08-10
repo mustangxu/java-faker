@@ -12,7 +12,7 @@ import java.util.Locale;
 import org.apache.commons.validator.routines.ISBNValidator;
 import org.apache.commons.validator.routines.checkdigit.EAN13CheckDigit;
 import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.github.javafaker.repeating.Repeat;
 
