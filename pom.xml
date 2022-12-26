@@ -16,7 +16,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<additionalparam>-Xdoclint:none</additionalparam>
 		<java.version>11</java.version>
-		<snakeyaml.version>1.32</snakeyaml.version>
+		<!--snakeyaml.version>1.32</snakeyaml.version-->
 	</properties>
 	<licenses>
 		<license>
